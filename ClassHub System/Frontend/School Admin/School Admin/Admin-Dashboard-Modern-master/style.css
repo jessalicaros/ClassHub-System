@@ -1,0 +1,1150 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+    --main-color: #ffc93c;
+    --color-dark: #004a2f;
+    --text-grey: white;
+
+}
+
+.side-header {
+    display: flex;
+    align-items: center;
+    
+}
+
+.logo {
+    height: 50px; 
+    width: 50px;  
+    margin-right: 10px; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    box-sizing: border-box;
+    font-family: 'Merriweather', sans-serif;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.sidebar {
+    position: fixed;
+    height: 100%;
+    width: 165px;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 100;
+    background: var(--color-dark);
+    transition: left 300ms;
+}
+
+.side-header {
+    box-shadow: 0px 5px 5px -5px green;
+    background: var(--main-color);
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-header h3, side-head span {
+    color: #fff;
+    font-weight: 400;
+}
+
+.side-content {
+    height: calc(100vh - 60px);
+    overflow: auto;
+}
+
+/* width */
+.side-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.side-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px whitesmoke; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.side-content::-webkit-scrollbar-thumb {
+  background: #388e3c; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.side-content::-webkit-scrollbar-thumb:hover {
+  background:green; 
+}
+
+.profile {
+    text-align: center;
+    padding: 2rem 0rem;
+}
+
+.bg-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    background-size: cover;
+}
+
+.profile-img {
+    height: 80px;
+    width: 80px;
+    display: inline-block;
+    margin: 0 auto .5rem auto;
+    border: 3px solid white;
+}
+
+.profile h4 {
+    color: #fff;
+    font-weight: bold;
+}
+
+.profile small {
+    color: whitesmoke;
+    font-weight: 200;
+}
+
+.sidebar {
+    overflow-y: auto;
+}
+
+.side-menu ul {
+    text-align: center;
+}
+
+.side-menu a {
+    display: block;
+    padding: 1.2rem 0rem;
+}
+
+.side-menu a.active {
+    background:#f07810;
+}
+
+.side-menu a.active span, .side-menu a.active small {
+    color: #fff;
+}
+
+.side-menu a span {
+    display: block;
+    text-align: center;
+    font-size: 1.7rem;
+}
+
+.side-menu a span, .side-menu a small {
+    color: whitesmoke;
+}
+
+#menu-toggle:checked ~ .sidebar {
+    width: 60px;
+}
+
+#menu-toggle:checked ~ .sidebar .side-header span {
+    display: none;
+}
+
+#menu-toggle:checked ~ .main-content {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+}
+
+#menu-toggle:checked ~ .main-content header {
+    left: 60px;
+}
+
+#menu-toggle:checked ~ .sidebar .profile,
+#menu-toggle:checked ~ .sidebar .side-menu a small {
+    display: none;
+}
+
+#menu-toggle:checked ~ .sidebar .side-menu a span {
+    font-size: 1.3rem;
+}
+
+
+.main-content {
+    margin-left: 165px;
+    width: calc(100% - 165px);
+    transition: margin-left 300ms;
+}
+
+header {
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 165px;
+    z-index: 100;
+    height: 60px;
+    box-shadow: 0px 5px 5px -5px rgb(0 0 0 /10%);
+    background: #fff;
+    transition: left 300ms;
+}
+
+.header-content, .header-menu {
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    justify-content: space-between;
+    padding: 0rem 1rem;
+}
+
+.header-content label:first-child span {
+    font-size: 1.3rem;
+}
+
+.header-content label {
+    cursor: pointer;
+}
+
+.header-menu {
+    justify-content: flex-end;
+    padding-top: .5rem;
+}
+
+.header-menu label,
+.header-menu .notify-icon {
+    margin-right: 2rem;
+    position: relative;
+}
+
+.header-menu label span,
+.notify-icon span:first-child {
+    font-size: 1.3rem;
+}
+
+.notify-icon span:last-child {
+    position: absolute;
+    background: var(--main-color);
+    height: 16px;
+    width: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    right: -5px;
+    top: -5px;
+    color: #fff;
+    font-size: .8rem;
+    font-weight: 500;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.user div, .client-img {
+    height: 40px;
+    width: 40px;
+    margin-right: 1rem;
+}
+
+.user span:last-child {
+    display: inline-block;
+    margin-left: .3rem;
+    font-size: .8rem;
+}
+
+main {
+    margin-top: 60px;
+}
+
+
+/*Meesage icon*/
+.notify-icon {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.notify {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    font-size: 0.8em;
+    padding: 0.3em 0.5em;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+.message-dropdown {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    width: 300px;
+    display: none;
+    z-index: 100;
+}
+
+.message-dropdown h3 {
+    margin: 0 0 10px;
+    font-size: 1.1em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.message-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.message-dropdown li {
+    margin-bottom: 0.5em;
+    font-size: 0.9em;
+}
+
+.notify-icon:hover .message-dropdown {
+    display: block;
+}
+.message-dropdown {
+    max-height: 200px;
+    overflow-y: auto;
+}
+.message-dropdown {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.notify-icon:hover .message-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Notification Icon Styles */
+.notify-icon {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.notify {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: black;
+    color: white;
+    font-size: 0.5em;
+    padding: 0.3em 0.5em;
+    border-radius: 50%;
+    font-weight: bold;
+}
+
+/* Dropdown Styles */
+.notification-dropdown {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    width: 300px;
+    display: none;
+    z-index: 100;
+}
+
+.notification-dropdown h3 {
+    margin: 0 0 10px;
+    font-size: 1.1em;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.notification-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-dropdown li {
+    margin-bottom: 0.5em;
+    font-size: 0.9em;
+}
+
+/* Show Dropdown on Hover */
+.notify-icon:hover .notification-dropdown {
+    display: block;
+}
+
+/* Optional: Add scrollbar for overflow */
+.notification-dropdown {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Optional: Fade-in animation for dropdown */
+.notification-dropdown {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.notify-icon:hover .notification-dropdown {
+    opacity: 1;
+    transform: translateY(0);
+}
+.actions span {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.add-school-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;  /* Set the border radius properly */
+    font-size: 16px;
+    margin: 10px;
+    display: inline-block; /* Allow the button to sit on the left */
+    text-align: left; /* Align text to the left */
+}
+
+.add-school-btn:hover {
+    background-color: #45a049;
+}
+
+/* Additional styles to ensure button is aligned to the left in its container */
+.container {
+    text-align: left;  /* Align all content in the container to the left */
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 400px;
+    border-radius: 10px;
+    animation: fadeIn 0.3s ease;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-height: 90vh; /* Prevent overflow */
+    overflow-y: auto;
+}
+/* Student Profile Image */
+.student-image-container img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+    margin: 0 auto;
+    display: block;
+}
+
+/* Contact Icons */
+.contact-icons {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center;    /* Vertically center */
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+.contact-icons a {
+    margin: 0 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* Section Titles */
+h3 {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Basic Details and Additional Details */
+p {
+    
+    font-size: 14px;
+    margin: 8px 0;
+}
+
+
+p span {
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+}
+
+/* Behavioral Rating */
+.rating-scale {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    text-align: left;
+}
+
+.rating-scale li {
+    margin: 5px 0;
+}
+
+/* Attendance Record */
+.attendance {
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Optional: Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Center the Heading */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Button Style */
+.btn {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%; /* Full width for better visibility */
+    margin-top: 15px;
+}
+
+/* Button Hover Style */
+.btn:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+}
+
+/* Input and Form Styling */
+input[type="number"], input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Label Styling */
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    text-align: left;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px) {
+    .modal-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+}
+
+
+/* School List Styling */
+.school-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.school-list li {
+    background: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.school-list img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+/*Modal view*/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    text-align: left;
+}
+
+.modal .close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.page-header {
+    padding: 1.3rem 1rem;
+    background:#379956;
+    border-bottom: 1px solid #dee2e8;
+}
+
+.page-header h1, .page-header small {
+    color: white;
+}
+
+.page-content {
+    padding: 1.3rem 1rem;
+    background: #379956;
+}
+
+/*View Style Modal*/
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 400px;
+    text-align: left;
+}
+
+.modal .close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+
+.analytics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+    margin-top: .5rem;
+    margin-bottom: 2rem;
+}
+
+/* Card styling with hover effect */
+.card {
+    box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
+    background: #fff;
+    padding: 1rem;
+    border-radius: 3px;
+    transition: transform 0.3s ease; /* Scale animation */
+    
+}
+
+/* Scale the card on hover */
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.attendance-number h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #28a745; /* Green color for the count */
+    transition: transform 0.3s ease-in-out; /* Animation for subtle pop effect */
+}
+
+.attendance-number h2:hover {
+    transform: scale(1.1); /* Slight zoom-in on hover */
+}
+
+.card-head span {
+    font-size: 3.2rem;
+    color: var(--text-grey);
+}
+
+.h3, h4 {
+        color: #333;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    canvas {
+        display: block;
+        margin: 0 auto;
+    }
+
+
+
+/* Progress bar styling */
+.card-progress small {
+    color: #777;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.card-indicator {
+    margin: .7rem 0;
+    height: 10px;
+    border-radius: 4px;
+    background: #e9edf2;
+    overflow: hidden;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+.card-indicator:hover {
+    background: #d0e8f6; /* Lighter background to highlight the indicator */
+}
+.indicator {
+    height: 10px;
+    border-radius: 4px;
+    transition: width 0.3s ease, background-color 0.3s ease; /* Smooth width and color transition */
+}
+
+/* Different colors for indicators */
+.indicator.one { background: #22baa0; }
+.indicator.two { background: #11a8c3; }
+.indicator.three { background: #f6d433; }
+.indicator.four { background: #f25656; }
+.card-indicator:hover .indicator {
+    background: #7ac9e7; /* Lighter color for indicator when hovering */
+}
+/* Style for the 'Add School' button */
+.add-school {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.add-school-btn {
+    background-color: green; /* Green color, change as needed */
+    color: white;
+    padding: 0.7rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-school-btn:hover {
+    background-color: #1a9f7b; /* Darker shade on hover */
+}
+.records {
+    box-shadow: 0px 5px 5px -5px rgb(0 0 0 / 10%);
+    background: #fff;
+    border-radius: 3px;
+}
+.student-name:hover {
+    background-color: #f0f8ff; /* Light blue background */
+    color: #007bff; /* Blue text */
+    cursor: pointer;
+    text-decoration: underline;
+}
+.record-header {
+    padding: rem;
+    display: flex; /* Enables Flexbox */
+    justify-content: flex-start; /* Aligns items horizontally to the left (or adjust as needed) */
+    align-items: center; /* Vertically centers the items */
+    gap: 1opx; /* Adds space between the items */
+}
+
+.form-container {
+    display: flex; /* Enables Flexbox for its children */
+    align-items: center; /* Vertically aligns the label and select dropdown */
+    gap: 20px; /* Adds space between the label and the select dropdown */
+}
+
+.add, .browse {
+    display: flex;
+    align-items: center;
+
+}
+
+.add span {
+    display: inline-block;
+    margin-right: .6rem;
+    font-size: .9rem;
+    color: #666;
+}
+
+input, button, select {
+    outline: none;
+}
+
+.add select, .browse input, .browse select {
+    height: 35px;
+    border: 1px solid #b0b0b0;
+    border-radius: 3px;
+    display: inline-block;
+    width: 75px;
+    padding: 0rem .5rem;
+    margin-right: .8rem;
+    color: #666;
+}
+
+.add button {
+    background: var(--main-color);
+    color: #fff;
+    height: 37px;
+    border-radius: 4px;
+    padding: 0rem 1rem;
+    border: none;
+    font-weight: 600;
+}
+
+.browse input {
+    width: 150px;
+}
+
+.browse select {
+    width: 100px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures there are no gaps between table borders */
+}
+
+table th, table td{
+    border: 1px solid #ddd; /* Adds a border around each cell */
+    padding: 8px; /* Adds padding inside the cells */
+    text-align: center; /* Aligns text to the left */
+}
+
+table th {
+    background-color: #f4f4f4; /* Adds a light background for table headers */
+    font-weight: bold; /* Makes headers bold */
+}
+
+.table-responsive {
+    width: 100%;
+    overflow: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table thead tr {
+    background: #e9edf2;
+  
+}
+
+table thead th {
+    padding: 1rem 0rem;
+    text-align: left;
+    color: black;
+    font-size: .9rem;
+    text-align: center;
+}
+
+table thead th:first-child {
+    padding-left: 1rem;
+}
+
+table tbody td {
+    padding: 1rem 0rem;
+    color: #444;
+}
+
+table tbody td:first-child {
+    padding-left: 1rem;
+    color: var(--main-color);
+    font-weight: 600;
+    font-size: .9rem;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dee2e8;
+}
+.attendance-circle {
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 100%;
+    border: 2px solid;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    opacity: 0.5; /* Dimmed by default */
+    transition: opacity 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+   
+}
+
+.attendance-circle.green {
+    border-color: green; /* Initially transparent, will be filled on selection */
+}
+
+.attendance-circle.red {
+    border-color: red; /* Initially transparent, will be filled on selection */
+}
+
+.attendance-circle.orange {
+    border-color: orange; /* Initially transparent, will be filled on selection */
+}
+
+.client-img {
+    margin-right: .5rem;
+    border: 2px solid #b0b0b0;
+    height: 45px;
+    width: 45px;
+}
+
+.client-info h4 {
+    color: #555;
+    font-size: .95rem;
+}
+
+.client-info small {
+    color: #777;
+}
+.small-text-table {
+    font-size: 0.85rem;
+}
+
+.actions span {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.actions span:hover {
+    color: #22baa0; /* Change color on hover */
+}
+.actions span[title] {
+    position: relative;
+}
+.actions span[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px;
+    font-size: 0.8rem;
+    border-radius: 3px;
+}
+.paid {
+    display: inline-block;
+    text-align: center;
+    font-weight: 600;
+    color: var(--main-color);
+    background: #e5f8ed;
+    padding: .5rem 1rem;
+    border-radius: 20px;
+    font-size: .8rem;
+}
+
+.analytics{
+    justify-content: center; /* Centers cards horizontally */
+}
+
+@media only screen and (max-width: 1200px) {
+    .analytics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .analytics {
+        grid-template-columns: 100%;
+    }
+    
+    .sidebar {
+        left: -165px;
+        z-index: 90;
+    }
+    
+    header {
+        left: 0;
+        width: 100%;
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    #menu-toggle:checked ~ .sidebar {
+        left: 0;
+    }
+    
+    #menu-toggle:checked ~ .sidebar {
+        width: 165px;
+    }
+
+    #menu-toggle:checked ~ .sidebar .side-header span {
+        display: inline-block;
+    }
+
+    #menu-toggle:checked ~ .sidebar .profile,
+    #menu-toggle:checked ~ .sidebar .side-menu a small {
+        display: block;
+    }
+
+    #menu-toggle:checked ~ .sidebar .side-menu a span {
+        font-size: 1.7rem;
+    }
+    
+    #menu-toggle:checked ~ .main-content header {
+        left: 0px;
+    }
+    
+    table {
+        width: 900px;
+    }
+}
+.td span {
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+.present {
+    border: 2px solid green;
+    background-color: green;
+}
+.absent {
+    border: 2px solid red;
+    background-color: red;
+}
+.leave {
+    border: 2px solid orange;
+    background-color: orange;
+}
+
+
+
+
+
+
+
+
+
+
+

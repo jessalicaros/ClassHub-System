@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Teacher Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="/Frontend/assets/img/logo1.png" rel="icon">
+    <link href="/Frontend/assets/img/logo1.png" rel="apple-touch-icon">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+
+<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<style>
+    /* Button Styling */
+    .rate-btn, .feedback-btn {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .rate-btn:hover, .feedback-btn:hover {
+        background-color: #218838; 
+    }
+    .close {
+    color: #aaa;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.feedback-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto; 
+}
+.feedback-modal .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.feedback-section {
+    margin-top: 15px;
+}
+#feedback-text {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    resize: none;
+    box-sizing: border-box;
+}
+.rating-modal {
+    position: fixed;
+    top: 50%;   
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding:20px;
+    border-radius: 8px;
+    width: 400px; 
+    max-width: 100%; 
+    max-height: 70%; 
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow-y: auto; 
+}
+/* Close Button */
+.rating-modal .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+/* Modal Background */
+.rating-modal-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filled {
+    color: yellow;
+    font-size: 20px; 
+}
+
+.empty {
+    color: gray; 
+    font-size: 20px; 
+}
+
+/* Rating Stars */
+.rating-stars {
+    display: flex;
+   
+    margin-bottom: 10px;
+}
+
+.star {
+    font-size: 1.5em;
+    cursor: pointer;
+    color: gold;
+}
+.student-name {
+        color: blue;
+        cursor: pointer;
+    }
+
+    .student-name:hover {
+        text-decoration: underline;
+    }
+    .modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less depending on screen size */
+  animation: popIn 0.3s ease-out;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  position: absolute;
+  font-weight: bold;
+  top: 5px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Animation */
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+</style>
+
+
+<body>
+   <input type="checkbox" id="menu-toggle">
+   <div class="sidebar">
+    <div class="side-header">
+        <!-- Display the uploaded logo on the dashboard -->
+        <img id="dashboardLogo" src="/Frontend/assets/img/logo1.png" alt="Logo" class="logo">
+      </div>
+    
+      <div class="side-content">
+        <div class="profile">
+          <!-- Display the school logo here -->
+          <div id="profileLogo" class="profile-img bg-img" style="background-image: url();"></div>
+          <!-- Display the school name here -->
+          <h4 id="schoolNameDisplay"></h4>
+       
+     
+      </div>
+      <div class="side-menu">
+        <ul>
+            <li>
+               <a href="index.html">
+                    <span class="las la-home"></span>
+                    <small>Dashboard</small>
+                </a>
+            </li>
+            <li>
+                <a href="students.html" class="active">
+                    <span class="las la-user-alt"></span>
+                    <small>Students</small>
+                </a>
+            </li>
+            <li>
+                <a href="Attendance.html">
+                    <span class="las la-clipboard-list"></span>
+                    <small>Attendances</small>
+                </a>
+            </li>
+            <li>
+                <a href="Profile.html">
+                    <span class="las la-cog"></span>
+                    <small>My Profile</small>
+                </a>
+                
+            </li>
+
+        </ul>
+    </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars" style="font-size: 25px; position: relative; top: 5px;"></span>
+                </label>
+                
+                <div class="header-menu">
+                   
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Message Icon (Font Awesome) -->
+                        <span class="las la-envelope" style="font-size: 24px; color:black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: green; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">7</span> 
+                    
+                        <!-- Message Dropdown -->
+                        <div class="message-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="message-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <img src="/Frontend/assets/img/m.png" alt="Message Icon" style="width: 16px; height: 16px;"/>
+                                <h3 style="font-size: 16px; font-weight: bold;">MESSAGES</h3>
+                                <span class="message-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="messages-list" style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Reminder: Submit the grades for your Algebra class by Friday, 3 PM.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Student: John Doe</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Can you please clarify the instructions for the final project? I'm a bit confused.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Math Department</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">The next department meeting is scheduled for Tuesday at 2 PM. Please be prepared to discuss the new curriculum changes.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Your request for additional teaching resources has been approved. Please visit the resource center to pick them up.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">System maintenance scheduled for 2 AM tonight. Please save your work before then.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Parent: Anna</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">My child has been struggling with homework. Would it be possible to arrange additional support or tutoring?</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">You have an upcoming professional development workshop this Friday. Please confirm your attendance.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Notification Icon (Font Awesome) -->
+                        <span class="las la-bell" style="font-size: 24px; color: black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">3</span> 
+                    
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="notification-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span class="notification-app-icon" style="font-size: 18px; color: #FFA500;">🔔</span> <!-- Notification Bell Icon -->
+                                <h3 style="font-size: 16px; font-weight: bold;">NOTIFICATIONS</h3>
+                                <span class="notification-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="notifications-list" style="list-style: none; padding: 0; margin: 0;">
+                                <!-- Example Notification 1: System Update -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        System update available. Please update your application to the latest version for improved performance.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 2: New Task Assigned -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        New task assigned by Admin: Prepare class report for this month. Deadline: Friday, 5 PM.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 3: Meeting Scheduled -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        Meeting scheduled for 3 PM today regarding new school policies. Please attend.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+
+
+                    <div class="user" style="position: relative; display: flex; align-items: center; padding-right: 50px;">
+                        <!-- Display Username -->
+                        <div 
+                            style="display: flex; align-items: center; font-size: 13px; cursor: pointer;" 
+                            onclick="toggleDropdown()"
+                        >
+                            <img 
+                                id="userIcon" 
+                                src="/Frontend/assets/img/user (1).png" 
+                                alt="User Icon" 
+                                style="border-radius: 20%; width: 20px; height: 20px; margin-right: 5px;"
+                            />
+                            <span id="usernameDisplay" style="font-weight: bold;">Username</span>
+                            <span 
+                                id="dropdownIcon" 
+                                style="margin-left: 5px; font-size: 14px;"
+                            >
+                                ▼
+                            </span>
+                        </div>
+                        
+                        <!-- Dropdown Menu -->
+                        <div 
+                            id="logoutDropdown" 
+                            style="
+                                display: none; 
+                                position: absolute; 
+                                top: 30px; 
+                                right: 0; 
+                                background-color: white; 
+                                border: 1px solid #ccc; 
+                                border-radius: 5px; 
+                                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+                                padding: 10px; 
+                                z-index: 1000;
+                                min-width: 120px;
+                                text-align: center;
+                            "
+                        >
+                            <span 
+                                onclick="logout()" 
+                                style="cursor: pointer; color: red; font-weight: bold; display: block;"
+                            >
+                                Logout
+                            </span>
+              </div>
+                </div>
+            </div>
+        </header>
+       
+        
+        <main>
+            
+            <div class="page-header">
+                <h1>Students</h1>
+                <small>Home / Students</small>
+            </div>
+            
+            <div class="page-content">
+            </div>
+            <div class="records table-responsive" style="padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <div class="record-header" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
+                    
+                        
+                        <!-- Grade Filter -->
+                        <div style="flex: 1 1 200px; display: flex; flex-direction: column; align-items: flex-start;">
+                            <label for="grade" style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Select Grade:</label>
+                            <select id="grade" name="grade" style="font-size: 14px; padding: 8px; border-radius: 5px; border: 1px solid green; width: 100%; box-sizing: border-box;">
+                                <option value="all">All Grades</option>
+                                <option value="Grade 1">Grade 1</option>
+                                <option value="Grade 2">Grade 2</option>
+                                <option value="Grade 3">Grade 3</option>
+                                <option value="Grade 4">Grade 4</option>
+                                <option value="Grade 5">Grade 5</option>
+                                <option value="Grade 6">Grade 6</option>
+                            </select>
+                        </div>
+            
+                        <!-- Gender Filter -->
+                        <div style="flex: 1 1 200px; display: flex; flex-direction: column; align-items: flex-start;">
+                            <label for="gender" style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Select Gender:</label>
+                            <select id="gender" name="gender" style="font-size: 14px; padding: 8px; border-radius: 5px; border: 1px solid green; width: 100%; box-sizing: border-box;">
+                                <option value="all">All Genders</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+            
+                        <!-- Date Filter -->
+                        <div style="flex: 1 1 200px; display: flex; flex-direction: column; align-items: flex-start;">
+                            <label for="date" style="font-size: 16px; font-weight: bold; margin-bottom: 5px;">Select Date:</label>
+                            <input type="date" id="date" style="font-size: 14px; padding: 8px; border-radius: 5px; border: 1px solid green; width: 100%; box-sizing: border-box;" />
+                        </div>
+            
+                        <!-- Filter Button -->
+                        <div style="flex: 1 1 auto; display: flex; align-items: center; justify-content: center;">
+                            <button onclick="filterStudents()" style="background-color: orange; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; transition: background-color 0.3s;">
+                                Filter
+                            </button>
+                        </div>
+                   
+                </div>
+            </div>
+                
+                <div class="records table-responsive">
+
+                    <div class="record-header">
+                      
+
+                       
+                  
+   <!-- Add Student Button -->
+   
+<!-- Modal for adding student -->
+<div class="modal" id="addStudentModal">
+    <div class="modal-content">
+        <!-- Close Button inside the form -->
+        <form id="addStudentForm" onsubmit="submitAddStudent(event)" style="position: relative;">
+            <!-- Close Icon inside the form -->
+            <span class="close" onclick="closeAddStudentModal()" style="font-size: 24px; position: absolute; top: 10px; right: 10px; cursor: pointer;">&times;</span>
+
+            <!-- Centered Title -->
+            <h2 style="text-align: center; margin-bottom: 20px;">Add Student</h2>
+
+            <div class="form-group">
+                <label for="studentId">Student ID:</label>
+                <input type="number" id="studentId" name="studentId" required placeholder="Enter unique Student ID">
+            </div>
+            <div class="form-group">
+                <label for="studentName">Name:</label>
+                <input type="text" id="studentName" name="studentName" required placeholder="Enter student's name">
+            </div>
+            <div class="form-group">
+                <label for="studentEmail">Email:</label>
+                <input type="email" id="studentEmail" name="studentEmail" required placeholder="Enter student's email">
+            </div>
+            <div class="form-group">
+                <label for="studentSection">Grade</label>
+                <input type="text" id="studentSection" name="studentSection" required placeholder="Enter student's section">
+            </div>
+            <div class="form-group">
+                <label for="studentGender">Gender:</label>
+                <select id="studentGender" name="studentGender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="studentDetails">Details:</label>
+                <textarea id="studentDetails" name="studentDetails" required placeholder="Enter additional details"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="studentAddress">Address:</label>
+                <textarea id="studentAddress" name="studentAddress" required placeholder="Enter student's address"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="studentBirthday">Birthday:</label>
+                <input type="date" id="studentBirthday" name="studentBirthday" required>
+            </div>
+            <div class="form-group">
+                <label for="parentEmail">Parent's Email:</label>
+                <input type="email" id="parentEmail" name="parentEmail" required placeholder="Enter parent's email">
+            </div>
+            <div class="form-group">
+                <label for="parentPhone">Parent's Contact:</label>
+                <input type="tel" id="parentPhone" name="parentPhone" required placeholder="Enter parent's phone number">
+            </div>
+
+            <!-- Image Upload -->
+            <div class="form-group">
+                <label for="studentImage">Upload Student Image:</label>
+                <input type="file" id="studentImage" name="studentImage" accept="image/*" required>
+                <img id="previewImage" style="display: none; margin-top: 10px; width: 100px; height: 100px;" />
+            </div>
+
+            <div class="container" style="text-align: center;">
+                <button type="submit" class="btn">Add Student</button>
+            </div>
+        </form>
+    
+    </div>
+</div>
+    <!-- Success Message -->
+    <div id="successMessage" style="display:none; color: green; text-align: center;">
+        Student added successfully!
+    </div>  
+
+
+                    </div>
+
+                    <div style="overflow-x: auto; max-width: 100%; margin-top: 10px;">
+                        <table id="studentsTable" style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead style="background-color: yello; color: black;">
+                                <tr>
+                                    <th style="border: 4px solid #ddd;padding: 8px; background-color: green; color: white;">Student ID</th>
+                                    <th style="border: 4px solid #ddd; padding: 8px; background-color: green; color: white;">NAME</th>
+                                    <th style="border: 4px solid #ddd; padding: 8px; background-color: green; color: white;">EMAIL ADDRESS</th>
+                                    <th style="border: 4px solid #ddd; padding: 8px; background-color: green; color: white;">GRADE</th>
+                                    <th style="border: 4px solid #ddd; padding: 8px; background-color: green; color: white;">GENDER</th>
+                                    <th style="border: 4px solid #ddd; padding: 8px; background-color: green; color: white;">ACTIONS</th>
+                                </tr>
+                                
+                            </thead>
+                            <tbody id="studentList">
+                            </tbody>
+                        </table>
+                    </div>
+                    
+
+
+                                          <!-- Modal for Student Details -->
+<div id="studentModal" class="modal" style="display: none; justify-content: center; align-items: center; height: 100vh;">
+    <div class="modal-content" style="width: 80%; max-width: 600px; padding: 20px; background-color: #fff; border-radius: 10px; position: relative;">
+        <span class="close" onclick="closeModal()" style="position: absolute; top: 10px; right: 10px; font-size: 25px; cursor: pointer;">&times;</span>
+
+        <h2 style="text-align: center;">Student Details</h2>
+        <div style="text-align: center">
+            <img id="student-image" src="" alt="Student Image" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
+            <p style="text-align: center; font-size: 18px; font-weight: bold;"><span id="student-name"></span></p>
+
+            <div style="text-align: center">
+                <button onclick="sendMessage()" style="background: none; border: none; cursor: pointer;">
+                    <img src="/Frontend/assets/img/icon/messages.png" alt="Message Icon" style="width: 30px; height: 30px; margin-right: 15px;">
+                </button>
+                
+                <button onclick="makeCall()" style="background: none; border: none; cursor: pointer;">
+                    <img src="/Frontend/assets/img/icon/phone.png" alt="Call Icon" style="width: 30px; height: 30px;">
+                </button>
+            </div>
+        
+            <p style="text-align: center;"><strong>Student ID:</strong> <span id="student-id"></span></p>
+            <p style="text-align: center;"><strong>Email:</strong> <span id="student-email"></span></p>
+            <p style="text-align: center;"><strong>Grade:</strong> <span id="student-grade"></span></p>
+            <p style="text-align: center;"><strong>Gender:</strong> <span id="student-gender"></span></p>
+            <p style="text-align: center;"><strong>Address:</strong> <span id="student-address"></span></p>
+            <p style="text-align: center;"><strong>Date of Birth:</strong> <span id="student-dob"></span></p>
+            <p style="text-align: center;"><strong>Parent's Email:</strong> <span id="student-parent-email"></span></p>
+            <p style="text-align: center;"><strong>Parent's Phone:</strong> <span id="student-parent-phone"></span></p>
+
+            <div class="modal-header" style="display: flex; justify-content: center; margin-top: 20px;">
+                <button class="edit-btn" onclick="openEditModal('encodedStudentData')" style="padding: 10px 20px; margin-right: 20px; cursor: pointer; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">Edit</button>
+                <button class="delete-btn" onclick="openFeedbackModal()" style="padding: 10px 20px; cursor: pointer; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">Provide Feedback</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Ensure modal is hidden on page load
+window.addEventListener('DOMContentLoaded', (event) => {
+    const studentModal = document.getElementById('studentModal');
+    
+    // Initially set modal display to none to ensure it's hidden
+    if (studentModal) {
+        studentModal.style.display = 'none'; // Ensure it's hidden when the page loads
+    }
+});
+
+// Function to close the modal
+function closeModal() {
+    const studentModal = document.getElementById('studentModal');
+    if (studentModal) {
+        studentModal.style.display = 'none'; // Close the modal
+    }
+}
+
+// Function to open the modal manually when needed
+function openStudentDetailsModal() {
+    const studentModal = document.getElementById('studentModal');
+    if (studentModal) {
+        studentModal.style.display = 'flex'; // Open the modal manually
+    }
+}
+</script>
+
+
+
+                                                <!-- Edit Student Modal -->
+                                                <div id="editStudentModal" class="modal" style="display: none;">
+                                                    <div class="modal-content">
+                                                        <span class="close" onclick="closeModal()" style="position: absolute; top: 10px; right: 10px; font-size: 25px; cursor: pointer;">&times;</span>
+                                                    <h2>Edit Student Details</h2>
+                                                    
+                                                    <!-- Editable Fields for Student Details -->
+                                                    <p><strong>Name:</strong> <input id="edit-student-name" type="text"></p>
+                                                    <p><strong>Student ID:</strong> <input id="edit-student-id" type="text" disabled></p>
+                                                    <p><strong>Email:</strong> <input id="edit-student-email" type="email"></p>
+                                                    <p><strong>Grade:</strong> <input id="edit-student-grade" type="text"></p>
+                                                    <p><strong>Gender:</strong> <input id="edit-student-gender" type="text"></p>
+                                                    <p><strong>Address:</strong> <input id="edit-student-address" type="text"></p>
+                                                    <p><strong>Date of Birth:</strong> <input id="edit-student-dob" type="date"></p>
+                                                    <p><strong>Parent's Email:</strong> <input id="edit-student-parent-email" type="email"></p>
+                                                    <p><strong>Parent's Phone:</strong> <input id="edit-student-parent-phone" type="tel"></p>
+                                                
+                                                    <!-- Save and Close Buttons -->
+                                                    <div class="modal-footer">
+                                                        <button class="save-btn" onclick="saveStudentDetails()">Save</button>
+                                                        <button class="cancel-btn" onclick="closeEditModal()">Cancel</button>
+                                                    </div>
+                                                    
+                                                    <!-- Success Message -->
+                                                    <div id="successMessage" style="display: none; color: green;">
+                                                        Student details have been successfully saved!
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+                      
+  
+  
+
+                                      </div>
+                                      <div class="rating-modal" style="display: none;">
+                                        <span class="close" onclick="closeRateModal()">&times;</span>
+                                        <h2>Rate Student's Behavior</h2>
+                                        <p>Please rate the student's behavior on a scale of 1 to 5 for the following traits:</p>
+                                    
+                                        <!-- Rating Categories -->
+                                        <div class="rating-category" id="communication">
+                                            <p><strong>Communication:</strong></p>
+                                            <div class="rating-stars">
+                                                <span class="star" onclick="rateBehavior('communication', 1)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('communication', 2)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('communication', 3)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('communication', 4)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('communication', 5)">&#9733;</span>
+                                            </div>
+                                            <div class="selected-rating">
+                                                <p>Communication rating: <span id="communication-rating">0</span></p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="rating-category" id="teamwork">
+                                            <p><strong>Teamwork:</strong></p>
+                                            <div class="rating-stars">
+                                                <span class="star" onclick="rateBehavior('teamwork', 1)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('teamwork', 2)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('teamwork', 3)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('teamwork', 4)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('teamwork', 5)">&#9733;</span>
+                                            </div>
+                                            <div class="selected-rating">
+                                                <p>Teamwork rating: <span id="teamwork-rating">0</span></p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="rating-category" id="participation">
+                                            <p><strong>Participation:</strong></p>
+                                            <div class="rating-stars">
+                                                <span class="star" onclick="rateBehavior('participation', 1)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('participation', 2)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('participation', 3)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('participation', 4)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('participation', 5)">&#9733;</span>
+                                            </div>
+                                            <div class="selected-rating">
+                                                <p>Participation rating: <span id="participation-rating">0</span></p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="rating-category" id="attitude">
+                                            <p><strong>Attitude:</strong></p>
+                                            <div class="rating-stars">
+                                                <span class="star" onclick="rateBehavior('attitude', 1)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('attitude', 2)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('attitude', 3)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('attitude', 4)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('attitude', 5)">&#9733;</span>
+                                            </div>
+                                            <div class="selected-rating">
+                                                <p>Attitude rating: <span id="attitude-rating">0</span></p>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="rating-category" id="leadership">
+                                            <p><strong>Leadership:</strong></p>
+                                            <div class="rating-stars">
+                                                <span class="star" onclick="rateBehavior('leadership', 1)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('leadership', 2)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('leadership', 3)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('leadership', 4)">&#9733;</span>
+                                                <span class="star" onclick="rateBehavior('leadership', 5)">&#9733;</span>
+                                            </div>
+                                            <div class="selected-rating">
+                                                <p>Leadership rating: <span id="leadership-rating">0</span></p>
+                                            </div>
+                                        </div>
+                                    
+                                        <!-- Submit Button and Close Button -->
+                                        <button onclick="submitBehaviorRating()">Submit Rating</button>
+                                        <button onclick="closeRateModal()">Close</button>
+                                    </div>
+
+
+                                        <!-- Feedback Modal -->
+                                        <div class="feedback-modal" style="display: none;">
+                                            <span class="close" onclick="closeFeedbackModal()">&times;</span>
+                                            <h2>Provide Feedback</h2>
+                                            <div class="feedback-section">
+                                                <label for="feedback-text">Your Feedback:</label>
+                                                <textarea id="feedback-text" rows="4" placeholder="Provide your feedback here..."></textarea>
+                                            </div>
+                                            <button onclick="submitFeedback()">Submit Feedback</button>
+                                            <button onclick="closeFeedbackModal()">Close</button>
+                                        </div>
+
+
+
+                                               <!-- Report Modal -->
+<div class="report-modal modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 1000;">
+    <div class="modal-content" style="background: #fff; padding: 20px; border-radius: 10px; width: 80%; max-width: 500px; position: relative; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+        <span class="close" onclick="closeReportModal()" style="position: absolute; top: 15px; right: 15px; font-size: 24px; font-weight: bold; color: #000; cursor: pointer;">&times;</span>
+        <h2 style="text-align: center;">Student Report</h2>
+
+        <!-- Feedback Section -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <h3>Feedback:</h3>
+            <p id="feedback-text-report"></p>
+        </div>
+
+        <!-- Ratings Section -->
+        <div style="text-align: center;">
+            <h3>Ratings:</h3>
+            <p><strong>Communication:</strong> 
+                <span id="communication-rating-report"></span> 
+                <span id="communication-stars"></span>
+            </p>
+            <p><strong>Teamwork:</strong> 
+                <span id="teamwork-rating-report"></span> 
+                <span id="teamwork-stars"></span>
+            </p>
+            <p><strong>Participation:</strong> 
+                <span id="participation-rating-report"></span> 
+                <span id="participation-stars"></span>
+            </p>
+            <p><strong>Attitude:</strong> 
+                <span id="attitude-rating-report"></span> 
+                <span id="attitude-stars"></span>
+            </p>
+            <p><strong>Leadership:</strong> 
+                <span id="leadership-rating-report"></span> 
+                <span id="leadership-stars"></span>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal for Viewing Student Details -->
+<div class="modal" id="viewStudentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;">
+    <div class="modal-content" style="position: relative; background: #fff; padding: 20px; width: 50%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+        <!-- Close Icon -->
+        <span 
+            onclick="closeViewStudentModal()" 
+            style="position: absolute; top: 10px; right: 15px; font-size: 24px; font-weight: bold; color: #333; cursor: pointer;" 
+            title="Close">&times;</span>
+        <h2 style="text-align: center; margin-bottom: 20px;">View Student Details</h2>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Student ID:</label>
+            <input type="text" id="viewStudentId" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Student Name:</label>
+            <input type="text" id="viewStudentName" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Email Address:</label>
+            <input type="email" id="viewStudentEmail" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Grade:</label>
+            <input type="text" id="viewStudentGrade" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Gender:</label>
+            <input type="text" id="viewStudentGender" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Details:</label>
+            <textarea id="viewStudentDetails" readonly rows="3" style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Address:</label>
+            <textarea id="viewStudentAddress" readonly rows="3" style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Birthday:</label>
+            <input type="date" id="viewStudentBirthday" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Parent Email:</label>
+            <input type="email" id="viewParentEmail" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Parent Contact Number:</label>
+            <input type="tel" id="viewParentContact" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+       
+</div>
+<!-- Modal for Editing Student Details -->
+<div class="modal" id="editStudentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;">
+    <div class="modal-content" style="position: relative; background: #fff; padding: 20px; width: 50%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+        <!-- Close Icon -->
+        <span 
+            onclick="closeEditStudentModal()" 
+            style="position: absolute; top: 10px; right: 15px; font-size: 24px; font-weight: bold; color: #333; cursor: pointer;"
+            title="Close">&times;</span>
+        <h2 style="text-align: center; margin-bottom: 20px;">Edit Student Details</h2>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Student ID:</label>
+            <input type="text" id="editStudentId" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Student Name:</label>
+            <input type="text" id="editStudentName" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Email Address:</label>
+            <input type="email" id="editStudentEmail" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Grade:</label>
+            <input type="text" id="editStudentGrade" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Gender:</label>
+            <input type="text" id="editStudentGender" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Details:</label>
+            <textarea id="editStudentDetails" rows="3" style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Address:</label>
+            <textarea id="editStudentAddress" rows="3" style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Birthday:</label>
+            <input type="date" id="editStudentBirthday" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Parent Email:</label>
+            <input type="email" id="editParentEmail" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Parent Contact Number:</label>
+            <input type="tel" id="editParentContact" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <button class="btn" onclick="saveStudentDetails()" style="background: #007bff; color: #fff; padding: 10px 15px; border: none; border-radius: 5px; cursor: pointer;">Save</button>
+    </div>
+</div>
+
+
+                                
+                               
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            
+            </div>
+            
+        </main>
+          <!-- Support Button -->
+    <button class="support-btn" id="supportBtn">
+        <i class="fas fa-headset"></i> Support
+    </button>
+
+    <!-- Chatbot Container -->
+    <div id="chatContainer" class="chat-container">
+        <div class="chat-header">
+            FAQ Bot
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-bubble bot">
+                Hi! I'm here to help. What do you want to know?
+            </div>
+            <div class="chat-bubble bot">
+                <strong>Choose a question:</strong>
+                <ul>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('How can I assess a student?')">How can I assess a student?</button></li>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('How can I generate a report?')">How can I generate a report?</button></li>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('How do I contact support?')">How do I contact support?</button></li>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('Can I manage another teacher’s data?')">Can I manage another teacher’s data?</button></li>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('How do I notify parents about attendance issues?')">How do I notify parents about attendance issues?</button></li>
+                
+                </ul>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <button class="btn w-100" id="closeChat" style="background-color: #f07810;">Close</button>
+        </div>
+    </div>
+        
+    </div>
+        
+    </div>
+    <script>
+         
+
+   
+
+
+        // Toggle chatbot visibility
+        supportBtn.addEventListener('click', () => {
+            chatContainer.style.display = chatContainer.style.display === 'none' || chatContainer.style.display === '' ? 'flex' : 'none';
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatContainer.style.display = 'none';
+        });
+
+        // Handle user message and bot response
+        function sendMessage(message) {
+            appendMessage('user', message);
+
+            // Simulate bot response
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                appendMessage('bot', response);
+            }, 500);
+        }
+
+        function appendMessage(sender, text) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('chat-bubble', sender);
+            bubble.innerText = text;
+            chatBody.appendChild(bubble);
+
+            // Scroll to the bottom
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            switch (message) {
+                case 'How can I assess a student?':
+                return 'Go to Student Menu, then click/choose a student. Rate and provide feedback ';
+                case 'How can I generate a report?':
+                    return 'Go to the Student Menu, select "students," and provide rate and feedback it will generate report of a student automatically.';
+                case 'How do I contact support?':
+                    return 'Email us at support@classhub.com.';
+                case 'Can I manage another teacher’s data?':
+                    return 'No, teachers can only manage data for their assigned classes unless given special permissions by the admin.';
+                case 'How do I notify parents about attendance issues?':
+                    return 'Use the "Notifications" feature in the Admin Dashboard to send automated or manual alerts to parents via email or SMS.';
+                default:
+                    return "Sorry, I didn't understand that. Please choose a question from the list.";
+            }
+        }   
+        // Retrieve the logo and school name from localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            const logo = localStorage.getItem('schoolLogo'); // Retrieve the logo (base64 encoded)
+            const schoolName = localStorage.getItem('schoolName'); // Retrieve the school name
+        
+            // Display the logo if available
+            const profileLogo = document.getElementById('profileLogo');
+            if (logo) {
+                profileLogo.style.backgroundImage = `url(${logo})`; // Set the background image
+            }
+        
+            // Display the school name if available
+            const schoolNameElement = document.getElementById('schoolNameDisplay');
+            if (schoolName) {
+                schoolNameElement.textContent = schoolName; // Set the text content to the saved school name
+            }
+        });
+           //Profile
+document.addEventListener("DOMContentLoaded", () => {
+    // Check if user is logged in (email exists in localStorage)
+    const email = localStorage.getItem("currentUserEmail");
+    if (email) {
+        const userData = JSON.parse(localStorage.getItem(email));
+        if (userData && userData.username) {
+            // Display the username in the designated span
+            document.getElementById("usernameDisplay").textContent = `Welcome, ${userData.username}!`;
+        }
+    } else {
+        // Redirect to login page if no email is stored (user not logged in)
+        window.location.href = "login.html";
+    }
+});
+
+// Open Add Student Modal
+function openAddStudentModal() {
+    document.getElementById("addStudentModal").style.display = "block";
+}
+
+// Close Add Student Modal
+function closeAddStudentModal() {
+    document.getElementById("addStudentModal").style.display = "none";
+}
+
+// Image Preview on File Select
+document.getElementById("studentImage").addEventListener("change", function(event) {
+    const reader = new FileReader();
+    reader.onload = function() {
+        const previewImage = document.getElementById("previewImage");
+        previewImage.style.display = "block";
+        previewImage.src = reader.result; // Set the image source to the uploaded file
+    };
+    reader.readAsDataURL(event.target.files[0]);
+});
+
+// Handle Form Submission
+document.getElementById("addStudentForm").addEventListener("submit", function(event) {
+    event.preventDefault();  // Prevent traditional form submission
+
+    // Get values from the form
+    const studentId = document.getElementById("studentId").value;
+    const studentName = document.getElementById("studentName").value;
+    const studentEmail = document.getElementById("studentEmail").value;
+    const studentGrade = document.getElementById("studentSection").value;
+    const studentGender = document.getElementById("studentGender").value;
+    const studentDetails = document.getElementById("studentDetails").value;
+    const studentAddress = document.getElementById("studentAddress").value;
+    const studentBirthday = document.getElementById("studentBirthday").value;
+    const parentEmail = document.getElementById("parentEmail").value;
+    const parentPhone = document.getElementById("parentPhone").value;
+    const studentImage = document.getElementById("studentImage").files[0]; // Get the uploaded image
+
+    // Create a new student object
+    const newStudent = {
+        id: studentId,
+        name: studentName,
+        email: studentEmail,
+        grade: studentGrade,
+        gender: studentGender,
+        details: studentDetails,
+        address: studentAddress,
+        birthday: studentBirthday,
+        parentEmail: parentEmail,
+        parentPhone: parentPhone,
+        image: studentImage ? URL.createObjectURL(studentImage) : null // Set image URL if provided
+    };
+
+    // Call populateTable to add the new student
+    populateTable([newStudent]);
+
+    // Show success message
+    const successMessage = document.getElementById("successMessage");
+    successMessage.style.display = "block";
+
+    // Hide success message after 3 seconds
+    setTimeout(function() {
+        successMessage.style.display = "none";
+    }, 3000);
+
+    // Reset the form and close the modal
+    document.getElementById("addStudentForm").reset();
+    closeAddStudentModal();
+});
+
+// Populate Table with Student Data
+function populateTable(data) {
+    const tableBody = document.querySelector('tbody');
+    data.forEach(student => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td style="border: 2px solid #ddd; padding: 8px;">${student.id}</td>
+            <td style="border: 2px solid #ddd; padding: 8px;">${student.name}</td>
+            <td style="border: 2px solid #ddd; padding: 8px;">${student.email}</td>
+            <td style="border: 2px solid #ddd; padding: 8px;">${student.grade}</td>
+            <td style="border: 2px solid #ddd; padding: 8px;">${student.gender}</td>
+            <td style="border: 2px solid #ddd; padding: 8px;">
+                <button onclick="showStudentDetails('${encodeURIComponent(JSON.stringify(student))}')">View Details</button>
+                <button onclick="viewReport()">View Rate and Feedback</button>
+            </td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+
+
+
+
+
+    function toggleDropdown() {
+        const dropdown = document.getElementById('logoutDropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        const dropdown = document.getElementById('logoutDropdown');
+        const userSection = document.querySelector('.user');
+        if (dropdown.style.display === 'block' && !userSection.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    function logout() {
+        alert('Logging out...');
+        // Add your logout logic here
+    }
+    //messages
+    // Toggle message dropdown visibility
+    document.querySelector('.las.la-envelope').addEventListener('click', function() {
+        const dropdown = document.querySelector('.message-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    //Notification
+    document.addEventListener("DOMContentLoaded", function() {
+       
+        const notifyIcon = document.querySelector('.las.la-bell');
+        const dropdown = document.querySelector('.notification-dropdown');
+
+        
+        notifyIcon.addEventListener('click', function() {
+            
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+       
+        window.addEventListener('click', function(event) {
+            if (!notifyIcon.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    });
+   
+//Student detail
+    document.addEventListener("DOMContentLoaded", function() {
+
+        
+  fetch('students.json')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data); 
+      studentsData = data; 
+      populateTable(data);
+    })
+    .catch(error => console.error('Error fetching JSON:', error));
+});
+// Populate table function
+function populateTable(data) {
+  const tableBody = document.querySelector('tbody');
+  tableBody.innerHTML = ''; // Clear existing rows
+
+  data.forEach(student => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td style="border: 2px solid #ddd; padding: 8px;">${student.id}</td>
+      <td style="border: 2px solid #ddd; padding: 8px;">${student.name}</td>
+      <td style="border: 2px solid #ddd; padding: 8px;">${student.email}</td>
+      <td style="border: 2px solid #ddd; padding: 8px;">${student.grade}</td>
+      <td style="border: 2px solid #ddd; padding: 8px;">${student.gender}</td>
+      <td style="border: 2px solid #ddd; padding: 8px;">
+        <button onclick="showStudentDetails('${encodeURIComponent(JSON.stringify(student))}')">View Details</button>
+        <button onclick="viewReport()">View Rate and Feedback</button>
+      </td>
+    `;
+    tableBody.appendChild(row);
+  });
+}
+function filterStudents() {
+  // Get selected filter values
+  const selectedGender = document.getElementById('gender') ? document.getElementById('gender').value : 'all';
+  const selectedDate = document.getElementById('date') ? document.getElementById('date').value : '';
+  const selectedGrade = document.getElementById('grade') ? document.getElementById('grade').value : 'all';
+
+  console.log('Selected Date:', selectedDate);  // Debugging line to check the selected date value
+
+  // Filter the studentsData array
+  const filteredData = studentsData.filter(student => {
+    console.log('Student Date:', student.date);  // Debugging line to check each student's date
+
+    const matchesGender = selectedGender === 'all' || student.gender === selectedGender;
+    const matchesDate = !selectedDate || student.date === selectedDate;  // Ensure comparison is correct
+    const matchesGrade = selectedGrade === 'all' || student.grade === selectedGrade;
+
+    return matchesGender && matchesDate && matchesGrade;
+  });
+
+  // Populate the table with filtered data
+  populateTable(filteredData);
+}
+
+
+
+function showStudentDetails(studentData) {
+  const student = JSON.parse(decodeURIComponent(studentData));
+
+  
+  const modal = document.getElementById('studentModal');
+  if (!modal) {
+    console.error("Modal not found!");
+    return;
+  }
+
+  
+  document.getElementById('student-name').innerText = student.name || 'N/A';
+  document.getElementById('student-id').innerText = student.id || 'N/A';
+  document.getElementById('student-email').innerText = student.email || 'N/A';
+  document.getElementById('student-grade').innerText = student.grade || 'N/A';
+  document.getElementById('student-gender').innerText = student.gender || 'N/A';
+  document.getElementById('student-address').innerText = student.address || 'N/A';
+  document.getElementById('student-dob').innerText = student.dob || 'N/A';
+  document.getElementById('student-parent-email').innerText = student.parentEmail || 'N/A';
+  document.getElementById('student-parent-phone').innerText = student.parentPhone || 'N/A';
+
+ 
+  const studentImage = document.getElementById('student-image');
+  studentImage.src = student.imageSrc || '/Frontend/assets/img/default.png'; // Default image if none provided
+  studentImage.alt = student.name || 'Student Image';
+
+  // Show the modal
+  modal.style.display = 'block';
+}
+
+
+function openStudentModal(student) {
+  if (!student) {
+    console.error('No student available to open modal');
+    return;
+  }
+ 
+function openStudentModal(student) {
+  if (!student) {
+    console.error('No student available to open modal');
+    return;
+  }
+
+ 
+}
+  
+  document.getElementById('student-name').innerText = student.name;
+  document.getElementById('student-id').innerText = student.id;
+  document.getElementById('student-email').innerText = student.email;
+  document.getElementById('student-grade').innerText = student.grade;
+  document.getElementById('student-gender').innerText = student.gender;
+  document.getElementById('student-address').innerText = student.address;
+  document.getElementById('student-dob').innerText = student.dob;
+  document.getElementById('student-parent-email').innerText = student.parentEmail;
+  document.getElementById('student-parent-phone').innerText = student.parentPhone;
+
+  
+  const studentImage = document.getElementById('student-image');
+  studentImage.src = student.imageSrc || ''; 
+  studentImage.alt = student.name;
+
+  const modal = document.getElementById('studentModal');
+  modal.style.display = 'flex'; 
+}
+
+
+fetch('students.json')
+  .then(response => response.json())
+  .then(data => {
+    
+    currentStudent = data[0]; 
+    console.log('Current student:', currentStudent); 
+
+    
+    openStudentModal(currentStudent);
+  })
+  .catch(error => {
+    console.error('Error loading student data:', error);
+  });
+
+
+function closeModal() {
+  const modal = document.getElementById('studentModal');
+  modal.style.display = 'none'; 
+}
+
+
+
+//Edit Function
+let currentStudent = null;
+
+
+function openStudentModal(student) {
+  if (!student) {
+    console.error('No student available to open modal');
+    return;
+  }
+
+
+  document.getElementById('student-name').innerText = student.name || 'N/A';
+  document.getElementById('student-id').innerText = student.id || 'N/A';
+  document.getElementById('student-email').innerText = student.email || 'N/A';
+  document.getElementById('student-grade').innerText = student.grade || 'N/A';
+  document.getElementById('student-gender').innerText = student.gender || 'N/A';
+  document.getElementById('student-address').innerText = student.address || 'N/A';
+  document.getElementById('student-dob').innerText = student.dob || 'N/A';
+  document.getElementById('student-parent-email').innerText = student.parentEmail || 'N/A';
+  document.getElementById('student-parent-phone').innerText = student.parentPhone || 'N/A';
+
+ 
+  const studentImage = document.getElementById('student-image');
+  studentImage.src = student.imageSrc || '/Frontend/assets/img/default.png';
+  studentImage.alt = student.name || 'Student Image';
+
+  
+  document.getElementById('studentModal').style.display = 'block';
+
+  
+  currentStudent = student;
+}
+
+// Function to open the Edit Student Modal (edit mode)
+function openEditModal() {
+  if (!currentStudent) {
+    console.error('No student selected for editing');
+    return;
+  }
+
+  // Fill in the current student details into the input fields
+  document.getElementById('edit-student-name').value = currentStudent.name;
+  document.getElementById('edit-student-id').value = currentStudent.id; // Read-only, disabled
+  document.getElementById('edit-student-email').value = currentStudent.email;
+  document.getElementById('edit-student-grade').value = currentStudent.grade;
+  document.getElementById('edit-student-gender').value = currentStudent.gender;
+  document.getElementById('edit-student-address').value = currentStudent.address;
+  document.getElementById('edit-student-dob').value = currentStudent.dob;
+  document.getElementById('edit-student-parent-email').value = currentStudent.parentEmail;
+  document.getElementById('edit-student-parent-phone').value = currentStudent.parentPhone;
+
+  // Show the Edit Student Modal
+  document.getElementById('editStudentModal').style.display = 'block';
+}
+
+// Function to save the edited student details
+function saveStudentDetails() {
+  if (!currentStudent) {
+    console.error('No student to save');
+    return;
+  }
+
+  // Get the updated values from the input fields
+  currentStudent.name = document.getElementById('edit-student-name').value;
+  currentStudent.email = document.getElementById('edit-student-email').value;
+  currentStudent.grade = document.getElementById('edit-student-grade').value;
+  currentStudent.gender = document.getElementById('edit-student-gender').value;
+  currentStudent.address = document.getElementById('edit-student-address').value;
+  currentStudent.dob = document.getElementById('edit-student-dob').value;
+  currentStudent.parentEmail = document.getElementById('edit-student-parent-email').value;
+  currentStudent.parentPhone = document.getElementById('edit-student-parent-phone').value;
+
+  // Optionally, send the updated student data to the server or update local storage
+
+  // Update the Student Details Modal to reflect the saved changes
+  openStudentModal(currentStudent);
+
+  // Close the Edit Student Modal
+  closeEditModal();
+}
+
+// Function to close the Edit Student Modal
+function closeEditModal() {
+  document.getElementById('editStudentModal').style.display = 'none';
+}
+
+// Function to close the Student Details Modal
+function closeModal() {
+  document.getElementById('studentModal').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("Page Loaded, ensuring modal doesn't auto-open...");
+
+    // Check if localStorage is available
+    const isLocalStorageAvailable = () => {
+        try {
+            const test = "__storage_test__";
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+        } catch (e) {
+            console.error("LocalStorage is not available:", e);
+            return false;
+        }
+    };
+
+    // Initialize storage and feedback
+    if (isLocalStorageAvailable()) {
+        try {
+            // Set default feedback and ratings in localStorage if not already set
+            if (!localStorage.getItem('feedback')) {
+                console.log("Setting default feedback...");
+                localStorage.setItem('feedback', "No feedback provided yet.");
+            }
+
+            if (!localStorage.getItem('studentRatings')) {
+                console.log("Setting default student ratings...");
+                localStorage.setItem('studentRatings', JSON.stringify({
+                    communication: 0,
+                    teamwork: 0,
+                    participation: 0,
+                    attitude: 0,
+                    leadership: 0
+                }));
+            }
+        } catch (error) {
+            console.error("Error accessing localStorage:", error);
+        }
+    } else {
+        // Fallback in case localStorage is unavailable (using in-memory storage)
+        window.feedback = "No feedback provided yet.";
+        window.studentRatings = {
+            communication: 0,
+            teamwork: 0,
+            participation: 0,
+            attitude: 0,
+            leadership: 0
+        };
+    }
+
+    // Prevent auto-modal opening
+    preventAutoModal();
+
+    // Add click event listeners for buttons
+    const viewReportButton = document.getElementById('view-report-btn');
+    if (viewReportButton) {
+        viewReportButton.addEventListener('click', viewReport);
+    }
+
+    const viewStudentDetailsButton = document.getElementById('view-student-btn');
+    if (viewStudentDetailsButton) {
+        viewStudentDetailsButton.addEventListener('click', openStudentDetailsModal);
+    }
+
+    // Close modal if navigating to student.html
+    if (window.location.pathname === '/student.html') {
+        closeModal(); // Close any modal if the user is on student.html
+    }
+});
+
+// Prevent auto-modal opening (including student details modal)
+function preventAutoModal() {
+    const studentDetailsModal = document.getElementById('studentModal');
+    if (studentDetailsModal) {
+        console.log("Preventing auto-opening of student modal...");
+        studentDetailsModal.style.display = 'none';  // Force hide modal when page loads
+    }
+
+    // Check for any additional modal that might be popping up
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        console.log("Hiding modal:", modal);
+        modal.style.display = 'none';  // Hide all modals
+    });
+}
+
+// Ensure feedbackText is always defined (fallback to in-memory variable if needed)
+let feedbackText = window.feedback || "No feedback provided yet.";
+
+// Function to close the modal
+function closeModal() {
+    const studentDetailsModal = document.getElementById('studentModal');
+    if (studentDetailsModal) {
+        console.log("Closing student modal...");
+        studentDetailsModal.style.display = 'none';  // Close the modal
+    }
+}
+
+// Function to open the modal for student details (make sure this only happens intentionally)
+function openStudentDetailsModal(event) {
+    const studentDetailsModal = document.getElementById('studentModal');
+    if (studentDetailsModal) {
+        console.log("Opening student modal...");
+
+        // Prevent any unexpected auto-opening behavior
+        event.preventDefault();  // Ensure we prevent any default action that might open the modal
+
+        studentDetailsModal.style.display = 'flex';  // Open the modal when triggered
+    }
+}
+
+
+
+function openFeedbackModal() {
+    document.querySelector('.feedback-modal').style.display = 'block';
+    
+}
+function submitFeedback() {
+    const feedbackText = document.getElementById('feedback-text').value;
+
+    if (!feedbackText) {
+        alert("Please provide feedback.");
+        return;
+    }
+
+    // Save feedback in localStorage
+    localStorage.setItem('feedback', feedbackText);
+
+    // Close the feedback modal
+    closeFeedbackModal();
+    // Open the rating modal
+    openRateModal();
+}
+function submitFeedback() {
+    const feedbackText = document.getElementById('feedback-text').value;
+
+    if (!feedbackText) {
+        alert("Please provide feedback.");
+        return;
+    }
+
+    // Save feedback in localStorage
+    localStorage.setItem('feedback', feedbackText);
+
+    // Close feedback modal
+    closeFeedbackModal();
+
+    // Open rating modal
+    openRateModal();
+    
+}
+function closeFeedbackModal() {
+    document.querySelector('.feedback-modal').style.display = 'none';
+}
+function openRateModal() {
+    document.querySelector('.rating-modal').style.display = 'block';
+}
+const ratings = {};
+
+function rateBehavior(category, value) {
+    ratings[category] = value;
+
+    // Update displayed rating
+    document.getElementById(`${category}-rating`).textContent = value;
+
+    // Highlight selected stars
+    const stars = document.querySelectorAll(`#${category} .star`);
+    stars.forEach((star, index) => {
+        star.style.color = index < value ? 'gold' : 'gray';
+    });
+}
+function submitBehaviorRating() {
+    if (Object.keys(ratings).length < 5) {
+        alert("Please rate all categories.");
+        return;
+    }
+
+    // Save ratings in localStorage
+    localStorage.setItem('studentRatings', JSON.stringify(ratings));
+
+    
+
+    alert("Feedback and ratings submitted successfully.");
+    // Close rating modal
+    closeRateModal();
+    closeModal();
+   
+}
+function closeRateModal() {
+    document.querySelector('.rating-modal').style.display = 'none';
+}
+
+
+
+function viewReport() {
+    const reportModal = document.querySelector('.report-modal');
+    const savedFeedback = localStorage.getItem('feedback');
+    const savedRatings = JSON.parse(localStorage.getItem('studentRatings'));
+
+    // Display feedback
+    const feedbackTextElement = document.getElementById('feedback-text-report');
+    feedbackTextElement.textContent = savedFeedback || "No feedback provided.";
+
+    // Display ratings
+    const categories = ['communication', 'teamwork', 'participation', 'attitude', 'leadership'];
+    categories.forEach(category => {
+        const ratingValue = savedRatings ? savedRatings[category] : 0;
+        document.getElementById(`${category}-rating-report`).textContent = ratingValue || "0";
+
+        // Add stars representation
+        const starsElement = document.getElementById(`${category}-stars`);
+        starsElement.innerHTML = generateStars(ratingValue);
+    });
+
+    // Show the modal
+    reportModal.style.display = 'block';
+}
+function generateStars(rating) {
+    let starsHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        starsHTML += `<span style="color: ${i <= rating ? 'gold' : 'gray'};">&#9733;</span>`;
+    }
+    return starsHTML;
+}
+function closeReportModal() {
+    const reportModal = document.querySelector('.report-modal');
+    reportModal.style.display = 'none';
+}
+localStorage.setItem('feedback', feedbackText);
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+  
+</body>
+</html>

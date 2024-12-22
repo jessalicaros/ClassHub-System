@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Teacher Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="/Frontend/TeacherPortal/School Admin/Admin-Dashboard-Modern-master/js/script.js"></script>
+    <link href="/Frontend/assets/img/logo1.png" rel="icon">
+    <link href="/Frontend/assets/img/logo1.png" rel="apple-touch-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<style>
+   body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f2f2f2;
+      text-align: left;
+    } 
+   
+ 
+    .attendance-status-circle {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+
+    .present {
+      background-color: green;
+    }
+
+    .absent {
+      background-color: red;
+    }
+
+    .excused {
+      background-color: orange;
+    }
+ 
+
+    .attendance-status-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 25px; /* Increased horizontal gap */
+    cursor: pointer;
+    border: 1px solid black;
+    background-color: transparent; /* Default */
+    transition: background-color 0.3s, border-color 0.3s;
+}
+    .present.active {
+      background-color: green;
+      border-color: green;
+    }
+
+    .absent.active {
+      background-color: red;
+      border-color: red;
+    }
+
+    .excused.active {
+      background-color: orange;
+      border-color: orange;
+    }
+
+    .save-button {
+      width: 100px;
+      height: 40px;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+ /* Modal Style */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Background color with opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Highlight the clicked name */
+.highlighted {
+  background-color: #f0f0f0;
+  padding: 5px;
+}
+  </style>
+
+<body>
+  <input type="checkbox" id="menu-toggle">
+  <div class="sidebar">
+   <div class="side-header">
+       <!-- Display the uploaded logo on the dashboard -->
+       <img id="dashboardLogo" src="/Frontend/assets/img/logo1.png" alt="Logo" class="logo">
+     </div>
+   
+     <div class="side-content">
+       <div class="profile">
+         <!-- Display the school logo here -->
+         <div id="profileLogo" class="profile-img bg-img" style="background-image: url();"></div>
+         <!-- Display the school name here -->
+         <h4 id="schoolNameDisplay"></h4>
+      
+    
+     </div>
+     <div class="side-menu">
+       <ul>
+           <li>
+              <a href="index.html">
+                   <span class="las la-home"></span>
+                   <small>Dashboard</small>
+               </a>
+           </li>
+           <li>
+               <a href="students.html" >
+                   <span class="las la-user-alt"></span>
+                   <small>Students</small>
+               </a>
+           </li>
+           <li>
+               <a href="Attendance.html" class="active">
+                   <span class="las la-clipboard-list"></span>
+                   <small>Attendances</small>
+               </a>
+           </li>
+           <li>
+               <a href="Profile.html">
+                   <span class="las la-cog"></span>
+                   <small>My Profile</small>
+               </a>
+               
+           </li>
+
+       </ul>
+   </div>
+       </div>
+   </div>
+    
+    <div class="main-content">
+        
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars" style="font-size: 25px; position: relative; top: 5px;"></span>
+                </label>
+                
+                <div class="header-menu">
+                   
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Message Icon (Font Awesome) -->
+                        <span class="las la-envelope" style="font-size: 24px; color:black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: green; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">7</span> 
+                    
+                        <!-- Message Dropdown -->
+                        <div class="message-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="message-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <img src="/Frontend/assets/img/m.png" alt="Message Icon" style="width: 16px; height: 16px;"/>
+                                <h3 style="font-size: 16px; font-weight: bold;">MESSAGES</h3>
+                                <span class="message-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="messages-list" style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Reminder: Submit the grades for your Algebra class by Friday, 3 PM.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Student: John Doe</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Can you please clarify the instructions for the final project? I'm a bit confused.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Math Department</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">The next department meeting is scheduled for Tuesday at 2 PM. Please be prepared to discuss the new curriculum changes.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Your request for additional teaching resources has been approved. Please visit the resource center to pick them up.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">System maintenance scheduled for 2 AM tonight. Please save your work before then.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Parent: Anna</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">My child has been struggling with homework. Would it be possible to arrange additional support or tutoring?</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">You have an upcoming professional development workshop this Friday. Please confirm your attendance.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Notification Icon (Font Awesome) -->
+                        <span class="las la-bell" style="font-size: 24px; color: black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">3</span> 
+                    
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="notification-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span class="notification-app-icon" style="font-size: 18px; color: #FFA500;">🔔</span> <!-- Notification Bell Icon -->
+                                <h3 style="font-size: 16px; font-weight: bold;">NOTIFICATIONS</h3>
+                                <span class="notification-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="notifications-list" style="list-style: none; padding: 0; margin: 0;">
+                                <!-- Example Notification 1: System Update -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        System update available. Please update your application to the latest version for improved performance.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 2: New Task Assigned -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        New task assigned by Admin: Prepare class report for this month. Deadline: Friday, 5 PM.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 3: Meeting Scheduled -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        Meeting scheduled for 3 PM today regarding new school policies. Please attend.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+
+
+                    <div class="user" style="position: relative; display: flex; align-items: center; padding-right: 50px;">
+                        <!-- Display Username -->
+                        <div 
+                            style="display: flex; align-items: center; font-size: 13px; cursor: pointer;" 
+                            onclick="toggleDropdown()"
+                        >
+                            <img 
+                                id="userIcon" 
+                                src="/Frontend/assets/img/user (1).png" 
+                                alt="User Icon" 
+                                style="border-radius: 20%; width: 20px; height: 20px; margin-right: 5px;"
+                            />
+                            <span id="usernameDisplay" style="font-weight: bold;">Username</span>
+                            <span 
+                                id="dropdownIcon" 
+                                style="margin-left: 5px; font-size: 14px;"
+                            >
+                                ▼
+                            </span>
+                        </div>
+                        
+                        <!-- Dropdown Menu -->
+                        <div 
+                            id="logoutDropdown" 
+                            style="
+                                display: none; 
+                                position: absolute; 
+                                top: 30px; 
+                                right: 0; 
+                                background-color: white; 
+                                border: 1px solid #ccc; 
+                                border-radius: 5px; 
+                                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+                                padding: 10px; 
+                                z-index: 1000;
+                                min-width: 120px;
+                                text-align: center;
+                            "
+                        >
+                            <span 
+                                onclick="logout()" 
+                                style="cursor: pointer; color: red; font-weight: bold; display: block;"
+                            >
+                                Logout
+                            </span>
+              </div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            
+            <div class="page-header">
+                <h1>Daily Attendance</h1>
+                <small>Home /attendance</small>
+            </div>
+            
+            <div class="page-content">
+           
+               </div>
+
+               <div class="records table-responsive" style="padding: 20px; background-color: #f9f9f9; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <div class="record-header" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px;">
+                    
+                    <!-- Filters Row -->
+                    <div style="display: flex; flex: 1; flex-wrap: wrap; gap: 15px; align-items: center;">
+                        <!-- Grade Filter -->
+                        <div>
+                            <label for="grade" style="font-size: 16px; font-weight: bold;">Grade:</label>
+                            <select id="grade" name="grade" style="font-size: 14px; padding: 8px; border: 1px solid green; border-radius: 5px; width: 150px;">
+                                <option value="all">All Grades</option>
+                                <option value="Grade 1">Grade 1</option>
+                                <option value="Grade 2">Grade 2</option>
+                                <option value="Grade 3">Grade 3</option>
+                                <option value="Grade 4">Grade 4</option>
+                                <option value="Grade 5">Grade 5</option>
+                                <option value="Grade 6">Grade 6</option>
+                            </select>
+                        </div>
+            
+                        <!-- Subject Filter -->
+                        <div>
+                            <label for="subject" style="font-size: 16px; font-weight: bold;">Subject:</label>
+                            <select id="subject" name="subject" style="font-size: 14px; padding: 8px; border: 1px solid green; border-radius: 5px; width: 150px;">
+                                <option value="all">All Subjects</option>
+                                <option value="Math">Math</option>
+                                <option value="Science">Science</option>
+                                <option value="English">English</option>
+                                <option value="Filipino">Filipino</option>
+                                <option value="Araling Panlipunan">Araling Panlipunan</option>
+                            </select>
+                        </div>
+            
+                        <!-- Date Filter -->
+                        <div>
+                            <label for="date" style="font-size: 16px; font-weight: bold;">Date:</label>
+                            <input type="date" id="date" style="font-size: 14px; padding: 8px; border: 1px solid green; border-radius: 5px; width: 180px;" />
+                        </div>
+            
+                        <!-- Filter Button -->
+                        <div>
+                            <button onclick="fetchAndFilterStudents()" style="background-color: orange; color: white; padding: 8px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+            
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                      <!-- Attendance Status Filter -->
+                      <div>
+                          <label for="status" style="font-size: 16px; font-weight: bold; margin-right: 10px;">Attendance:</label>
+                          <select id="status" name="status" onchange="filterByStatus()" style="font-size: 14px; padding: 8px; border: 1px solid green; border-radius: 5px; width: 150px;">
+                              <option value="Present">Present</option>
+                              <option value="Absent">Absent</option>
+                              <option value="Excused">Excused</option>
+                          </select>
+                      </div>
+                  
+                      <!-- Save Button -->
+                      <button type="button" class="btn btn-success" id="saveBtn" style="background-color: green; color: white; padding: 8px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;" onclick="saveAttendance()">
+                          Save
+                      </button>
+                  </div>
+                  
+                    </div>
+                </div>
+            </div>
+
+              <div class="records table-responsive">
+
+              <div class="record-header">
+                
+            
+            <div id="successMessage" style="display: none; position: fixed; top: 0; left: 0; width: 100%; padding: 10px; background-color: green; color: white; text-align: center; font-size: 16px; z-index: 1000;">
+              Attendance saved successfully!
+            </div>
+
+            
+                      </div>
+                    </div>
+                  </div>
+                 
+                  
+                  <div id="studentModal" class="modal" style="display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4);">
+                    <div class="modal-content" style="background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%;">
+                        <span class="close" onclick="closeModal()" style="color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+                        <h2 id="student-name-modal"></h2>
+                        <p id="student-subject"></p>
+                        <p id="student-section"></p>
+                    </div>
+                </div>
+                
+              
+                </div>
+                
+                        <table id="attendance-table" width="100%">
+                          <thead>
+                            <tr>
+                              <th>Student ID</th>
+                              <th>Student Name<br><small>(Last Name, First Name Middle Initial)</small></th>
+                              <th>
+                                Attendance
+                                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px; font-size: 12px; color: #555; align-items: center;">
+                                  <div style="display: flex; align-items: center; gap: 5px;">
+                                    <span style="width: 12px; height: 12px; border-radius: 50%; background-color: green; display: inline-block;"></span>
+                                    <span>Present</span>
+                                  </div>
+                                  <div style="display: flex; align-items: center; gap: 5px;">
+                                    <span style="width: 12px; height: 12px; border-radius: 50%; background-color: red; display: inline-block;"></span>
+                                    <span>Absent</span>
+                                  </div>
+                                  <div style="display: flex; align-items: center; gap: 5px;">
+                                    <span style="width: 12px; height: 12px; border-radius: 50%; background-color: orange; display: inline-block;"></span>
+                                    <span>Excused</span>
+                                  </div>
+                                </div>
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody id="studentList">
+                            
+                       
+                          </tbody>
+                        </table>
+                      
+                       
+                      </div>
+
+                </div>
+            
+            </div>
+            
+            
+        </main>
+        <button class="support-btn" id="supportBtn">
+          <i class="fas fa-headset"></i> Support
+      </button>
+  
+      <!-- Chatbot Container -->
+      <div id="chatContainer" class="chat-container">
+          <div class="chat-header">
+              FAQ Bot
+          </div>
+          <div class="chat-body" id="chatBody">
+              <div class="chat-bubble bot">
+                  Hi! I'm here to help. What do you want to know?
+              </div>
+              <div class="chat-bubble bot">
+                  <strong>Choose a question:</strong>
+                  <ul>
+                      <li><button class="btn btn-link p-0" onclick="sendMessage('How can I assess a student?')">How can I assess a student?</button></li>
+                      <li><button class="btn btn-link p-0" onclick="sendMessage('How can I generate a report?')">How can I generate a report?</button></li>
+                      <li><button class="btn btn-link p-0" onclick="sendMessage('How do I contact support?')">How do I contact support?</button></li>
+                      <li><button class="btn btn-link p-0" onclick="sendMessage('Can I manage another teacher’s data?')">Can I manage another teacher’s data?</button></li>
+                      <li><button class="btn btn-link p-0" onclick="sendMessage('How do I notify parents about attendance issues?')">How do I notify parents about attendance issues?</button></li>
+                  
+                  </ul>
+              </div>
+          </div>
+          <div class="chat-footer">
+              <button class="btn w-100" id="closeChat" style="background-color: #f07810;">Close</button>
+          </div>
+      </div>
+          
+      </div>
+          
+      </div>
+    </div>
+    <script>
+        // Retrieve the logo and school name from localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            const logo = localStorage.getItem('schoolLogo'); // Retrieve the logo (base64 encoded)
+            const schoolName = localStorage.getItem('schoolName'); // Retrieve the school name
+        
+            // Display the logo if available
+            const profileLogo = document.getElementById('profileLogo');
+            if (logo) {
+                profileLogo.style.backgroundImage = `url(${logo})`; // Set the background image
+            }
+        
+            // Display the school name if available
+            const schoolNameElement = document.getElementById('schoolNameDisplay');
+            if (schoolName) {
+                schoolNameElement.textContent = schoolName; // Set the text content to the saved school name
+            }
+        });
+      
+        // Toggle chatbot visibility
+        supportBtn.addEventListener('click', () => {
+            chatContainer.style.display = chatContainer.style.display === 'none' || chatContainer.style.display === '' ? 'flex' : 'none';
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatContainer.style.display = 'none';
+        });
+
+        // Handle user message and bot response
+        function sendMessage(message) {
+            appendMessage('user', message);
+
+            // Simulate bot response
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                appendMessage('bot', response);
+            }, 500);
+        }
+
+        function appendMessage(sender, text) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('chat-bubble', sender);
+            bubble.innerText = text;
+            chatBody.appendChild(bubble);
+
+            // Scroll to the bottom
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            switch (message) {
+                case 'How can I assess a student?':
+                return 'Go to Student Menu, then click/choose a student. Rate and provide feedback ';
+                case 'How can I generate a report?':
+                    return 'Go to the Student Menu, select "students," and provide rate and feedback it will generate report of a student automatically.';
+                case 'How do I contact support?':
+                    return 'Email us at support@classhub.com.';
+                case 'Can I manage another teacher’s data?':
+                    return 'No, teachers can only manage data for their assigned classes unless given special permissions by the admin.';
+                case 'How do I notify parents about attendance issues?':
+                    return 'Use the "Notifications" feature in the Admin Dashboard to send automated or manual alerts to parents via email or SMS.';
+                default:
+                    return "Sorry, I didn't understand that. Please choose a question from the list.";
+            }
+        }   
+            //Profile
+document.addEventListener("DOMContentLoaded", () => {
+    // Check if user is logged in (email exists in localStorage)
+    const email = localStorage.getItem("currentUserEmail");
+    if (email) {
+        const userData = JSON.parse(localStorage.getItem(email));
+        if (userData && userData.username) {
+            // Display the username in the designated span
+            document.getElementById("usernameDisplay").textContent = `Welcome, ${userData.username}!`;
+        }
+    } else {
+        // Redirect to login page if no email is stored (user not logged in)
+        window.location.href = "login.html";
+    }
+});
+
+
+
+function toggleDropdown() {
+        const dropdown = document.getElementById('logoutDropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        const dropdown = document.getElementById('logoutDropdown');
+        const userSection = document.querySelector('.user');
+        if (dropdown.style.display === 'block' && !userSection.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    function logout() {
+        alert('Logging out...');
+        // Add your logout logic here
+    }
+    //messages
+    // Toggle message dropdown visibility
+    document.querySelector('.las.la-envelope').addEventListener('click', function() {
+        const dropdown = document.querySelector('.message-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    //Notification
+    document.addEventListener("DOMContentLoaded", function() {
+       
+        const notifyIcon = document.querySelector('.las.la-bell');
+        const dropdown = document.querySelector('.notification-dropdown');
+
+        
+        notifyIcon.addEventListener('click', function() {
+            
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+       
+        window.addEventListener('click', function(event) {
+            if (!notifyIcon.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    });
+    // Function to fetch and filter students based on grade, subject, and date
+async function fetchAndFilterStudents() {
+  try {
+    // Fetch the student attendance data
+    const response = await fetch('studentattendance.json');
+    const studentAttendance = await response.json();
+
+    // Get filter values
+    const gradeFilter = document.getElementById("grade").value;
+    const subjectFilter = document.getElementById("subject").value;
+    const dateFilter = document.getElementById("date").value;
+
+    // Filter the student data based on the selected criteria
+    const filteredStudents = studentAttendance.filter((student) => {
+      return (
+        (gradeFilter === "all" || student.grade === gradeFilter) &&
+        (subjectFilter === "all" || student.subject === subjectFilter) &&
+        (!dateFilter || student.date === dateFilter)
+      );
+    });
+
+    // Update the table with filtered results
+    updateStudentTable(filteredStudents);
+  } catch (error) {
+    console.error("Error fetching or processing data:", error);
+  }
+}
+
+
+   
+
+// Function to update the student table with filtered data
+function updateStudentTable(filteredStudents) {
+  const studentList = document.getElementById("studentList");
+  studentList.innerHTML = ""; // Clear existing rows
+
+  if (filteredStudents.length === 0) {
+    studentList.innerHTML = `<tr><td colspan="3">No records found.</td></tr>`;
+    return;
+  }
+
+  // Populate the table with filtered data
+  filteredStudents.forEach((student) => {
+    const row = document.createElement("tr");
+    row.classList.add('attendance-row');
+    
+    row.innerHTML = `
+      <td class="student-id">${student.id}</td>
+      <td class="student-name">${student.name}</td>
+      <td>
+        <div style="display: flex; justify-content: center; gap: 10px;">
+          <span class="attendance-status-circle present ${student.status === 'Present' ? 'active' : ''}" data-status="Present"></span>
+          <span class="attendance-status-circle absent ${student.status === 'Absent' ? 'active' : ''}" data-status="Absent"></span>
+          <span class="attendance-status-circle excused ${student.status === 'Excused' ? 'active' : ''}" data-status="Excused"></span>
+        </div>
+      </td>
+    `;
+    studentList.appendChild(row);
+  });
+
+  // Add event listeners to the attendance circles
+  handleAttendanceClick();
+}
+
+// Function to handle attendance click events
+function handleAttendanceClick() {
+  document.querySelectorAll('.attendance-status-circle').forEach((circle) => {
+    circle.addEventListener('click', function () {
+      const parent = this.parentNode;
+      const studentId = parent.closest('tr').querySelector('.student-id').textContent;
+
+      // Clear the active state from all siblings
+      parent.querySelectorAll('.attendance-status-circle').forEach((c) => {
+        c.classList.remove('active');
+      });
+
+      // Set clicked circle as active
+      this.classList.add('active');
+
+      // Update the status for this student
+      updateStudentStatus(studentId, this.getAttribute('data-status'));
+    });
+  });
+}
+
+// Function to update the attendance status of a student
+function updateStudentStatus(studentId, status) {
+  const student = students.find(student => student.id === studentId);
+  if (student) {
+    student.status = status;
+  }
+}
+
+// Function to filter students by attendance status
+function filterByStatus() {
+  const selectedStatus = document.getElementById('status').value;  // Get selected status from the dropdown
+  const filteredStudents = students.filter(student => {
+    return selectedStatus === 'All' || student.status === selectedStatus;
+  });
+  updateStudentTable(filteredStudents);
+}
+
+let students = [];
+
+function fetchAttendanceData() {
+  fetch('studentAttendance.json')  // Path to the JSON file
+    .then(response => response.json())
+    .then(data => {
+      students = data;  // Assign the fetched data to the students variable
+      updateStudentTable(students);  // Call a function to update the student table (if applicable)
+    })
+    .catch(error => console.error("Error loading attendance data:", error));
+}
+
+function saveAttendance() {
+  // Check if students array is available
+  if (students && students.length > 0) {
+    const attendanceData = students.map(student => ({
+      id: student.id,
+      name: student.name,
+      status: student.status
+    }));
+
+    // Handle saving the data (e.g., send to the server or store in local storage)
+    console.log('Attendance Data:', attendanceData);
+
+    // Display success message at the top of the page
+    document.getElementById('successMessage').style.display = 'block';
+
+    // Hide the success message after 3 seconds
+    setTimeout(() => {
+      document.getElementById('successMessage').style.display = 'none';
+    }, 3000);
+  } else {
+    console.error("Error: Students array is not defined or empty.");
+  }
+}
+
+// Initial population of the student table (All students initially)
+fetchAttendanceData();
+
+
+
+
+    </script>
+   
+</body>
+
+</html>
+

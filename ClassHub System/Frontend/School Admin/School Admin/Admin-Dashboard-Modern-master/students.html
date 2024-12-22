@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>School Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="/Frontend/assets/img/logo1.png" rel="icon">
+    <link href="/Frontend/assets/img/logo1.png" rel="apple-touch-icon">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+
+<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+
+
+<body>
+   <input type="checkbox" id="menu-toggle">
+   <div class="sidebar">
+    <div class="side-header">
+        <!-- Display the uploaded logo on the dashboard -->
+        <img id="dashboardLogo" src="/Frontend/assets/img/logo1.png" alt="Logo" class="logo">
+      </div>
+    
+      <div class="side-content">
+        <div class="profile">
+          <!-- Display the school logo here -->
+          <div id="profileLogo" class="profile-img bg-img" style="background-image: url();"></div>
+          <!-- Display the school name here -->
+          <h4 id="schoolNameDisplay"></h4>
+       
+     
+      </div>
+             <div class="side-menu">
+                <ul>
+                    <li>
+                       <a href="index.html" >
+                            <span class="las la-home"></span>
+                            <small>Dashboard</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="teachers.html">
+                            <span class="las la-user-alt"></span>
+                            <small>Teachers</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="students.html" class="active">
+                            <span class="las la-user-alt"></span>
+                            <small>Students</small>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="Profile.html">
+                            <span class="las la-cog"></span>
+                            <small>My Profile</small>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars" style="font-size: 25px; position: relative; top: 5px;"></span>
+                </label>
+                
+                <div class="header-menu">
+                   
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Message Icon (Font Awesome) -->
+                        <span class="las la-envelope" style="font-size: 24px; color:black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: green; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">7</span> 
+                    
+                        <!-- Message Dropdown -->
+                        <div class="message-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="message-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <img src="/Frontend/assets/img/m.png" alt="Message Icon" style="width: 16px; height: 16px;"/>
+                                <h3 style="font-size: 16px; font-weight: bold;">MESSAGES</h3>
+                                <span class="message-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="messages-list" style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Reminder: Submit the grades for your Algebra class by Friday, 3 PM.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Student: John Doe</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Can you please clarify the instructions for the final project? I'm a bit confused.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Math Department</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">The next department meeting is scheduled for Tuesday at 2 PM. Please be prepared to discuss the new curriculum changes.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Your request for additional teaching resources has been approved. Please visit the resource center to pick them up.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">System maintenance scheduled for 2 AM tonight. Please save your work before then.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Parent: Anna</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">My child has been struggling with homework. Would it be possible to arrange additional support or tutoring?</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">You have an upcoming professional development workshop this Friday. Please confirm your attendance.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Notification Icon (Font Awesome) -->
+                        <span class="las la-bell" style="font-size: 24px; color: black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">3</span> 
+                    
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="notification-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span class="notification-app-icon" style="font-size: 18px; color: #FFA500;">🔔</span> <!-- Notification Bell Icon -->
+                                <h3 style="font-size: 16px; font-weight: bold;">NOTIFICATIONS</h3>
+                                <span class="notification-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="notifications-list" style="list-style: none; padding: 0; margin: 0;">
+                                <!-- Example Notification 1: System Update -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        System update available. Please update your application to the latest version for improved performance.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 2: New Task Assigned -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        New task assigned by Admin: Prepare class report for this month. Deadline: Friday, 5 PM.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 3: Meeting Scheduled -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        Meeting scheduled for 3 PM today regarding new school policies. Please attend.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+
+
+                    <div class="user" style="position: relative; display: flex; align-items: center; padding-right: 50px;">
+                        <!-- Display Username -->
+                        <div 
+                            style="display: flex; align-items: center; font-size: 13px; cursor: pointer;" 
+                            onclick="toggleDropdown()"
+                        >
+                            <img 
+                                id="userIcon" 
+                                src="/Frontend/assets/img/user (1).png" 
+                                alt="User Icon" 
+                                style="border-radius: 20%; width: 20px; height: 20px; margin-right: 5px;"
+                            />
+                            <span id="usernameDisplay" style="font-weight: bold;">Username</span>
+                            <span 
+                                id="dropdownIcon" 
+                                style="margin-left: 5px; font-size: 14px;"
+                            >
+                                ▼
+                            </span>
+                        </div>
+                        
+                        <!-- Dropdown Menu -->
+                        <div 
+                            id="logoutDropdown" 
+                            style="
+                                display: none; 
+                                position: absolute; 
+                                top: 30px; 
+                                right: 0; 
+                                background-color: white; 
+                                border: 1px solid #ccc; 
+                                border-radius: 5px; 
+                                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+                                padding: 10px; 
+                                z-index: 1000;
+                                min-width: 120px;
+                                text-align: center;
+                            "
+                        >
+                            <span 
+                                onclick="logout()" 
+                                style="cursor: pointer; color: red; font-weight: bold; display: block;"
+                            >
+                                Logout
+                            </span>
+              </div>
+                </div>
+            </div>
+        </header>
+       
+        
+       <main>
+            
+            <div class="page-header">
+                <h1>Students</h1>
+                <small>Home / Students</small>
+            </div>
+            
+            <div class="page-content">
+            </div>
+
+          
+                
+                <div class="records table-responsive">
+
+                    <div class="record-header">
+
+                       
+  <!-- Add Student Button in a New Row -->
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-12">
+        <button class="btn add-school-btn" onclick="openAddStudentModal()">Add Student</button>
+    </div>
+</div>
+
+<!-- Add Student Modal -->
+<div class="modal" id="addStudentModal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddStudentModal()">&times;</span>
+        <h2>Add Student</h2>
+        <form id="addStudentForm">
+            <div class="form-group">
+                <label for="studentId">Student ID:</label>
+                <input type="text" id="studentId" class="form-control" required placeholder="Enter unique Student ID">
+            </div>
+            <div class="form-group">
+                <label for="studentName">Name:</label>
+                <input type="text" id="studentName" class="form-control" required placeholder="Enter student's name">
+            </div>
+            <div class="form-group">
+                <label for="studentEmail">Email Address:</label>
+                <input type="email" id="studentEmail" class="form-control" required placeholder="Enter email address">
+            </div>
+            <div class="form-group">
+                <label for="studentSection">Section:</label>
+                <input type="text" id="studentSection" class="form-control" required placeholder="Enter student's section">
+            </div>
+            <div class="form-group">
+                <label for="studentGender">Gender:</label>
+                <select id="studentGender" class="form-control" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="studentDetails">Details:</label>
+                <textarea id="studentDetails" class="form-control" rows="3" required placeholder="Enter student details"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="studentAddress">Address:</label>
+                <textarea id="studentAddress" class="form-control" rows="3" required placeholder="Enter student's address"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="studentBirthday">Birthday:</label>
+                <input type="date" id="studentBirthday" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="parentEmail">Parent Email:</label>
+                <input type="email" id="parentEmail" class="form-control" required placeholder="Enter parent's email">
+            </div>
+            <div class="form-group">
+                <label for="parentContact">Parent Contact Number:</label>
+                <input type="tel" id="parentContact" class="form-control" required placeholder="Enter parent's contact number">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-2">Add Student</button>
+        </form>
+    </div>
+</div>
+
+
+                    </div>
+
+                    <div style="overflow-x: auto; max-width: 100%; margin-top: 10px;">
+                        <table id="studentsTable" style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead>
+                                    <tr>
+                                        <th style="border: 2px solid #ddd; padding: 8px;">Student ID</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span> NAME</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span>EMAIL ADDRESS</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span>GRADE</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span>GENDER</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span>DETAILS</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span>ADDRESS</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span>BIRTHDAY</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span>PARENT EMAIL</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span>PARENT CONTACT NUMBER</th>
+                                        <th style="border: 2px solid #ddd; padding: 8px;"></span> ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentList">
+                                <tr id="student-1">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">1</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Juan Dela Cruz</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">juan.delacruz@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 2</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Male</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Top student in math</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">123 Main St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">01/01/2005</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">juandelacruz@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">123-456-7890</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(1)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(1)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(1)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="student-2">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">2</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Maria Clara</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">maria.clara@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 1</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Female</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Excels in science</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">456 Oak St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">02/02/2006</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">mariaclara@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">987-654-3210</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(2)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(2)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(2)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="student-3">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">3</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Miguel Reyes</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">miguel.reyes@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 1</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Male</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Outstanding athlete</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">789 Pine St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">03/03/2007</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">miguelreyes@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">321-654-9870</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(3)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(3)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(3)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="student-4">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">4</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Ana Santos</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">ana.santos@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 3</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Female</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Great in arts</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">101 Maple St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">04/04/2008</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">anasantos@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">654-987-3210</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(4)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(4)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(4)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="student-5">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">5</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Luis Martinez</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">luis.martinez@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 5</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Male</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Amazing in physics</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">202 Birch St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">05/05/2005</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">luismartinez@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">456-123-7890</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(5)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(5)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(5)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="student-6">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">6</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Carlos Rivera</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">carlos.rivera@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 4</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Male</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Top scorer in English</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">567 Cedar St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">06/06/2006</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">carlosrivera@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">321-987-6543</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(6)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(6)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(6)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="student-7">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">7</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Isabella Cruz</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">isabella.cruz@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 2</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Female</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Excellent in history</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">678 Birch St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">07/07/2007</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">isabellacruz@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">432-765-8901</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(7)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(7)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(7)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="student-8">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">8</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Gabriel Lopez</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">gabriel.lopez@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 4</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Male</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Champion in swimming</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">234 Maple St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">08/08/2006</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">gabriellopez@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">654-321-9870</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(8)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(8)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(8)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="student-9">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">9</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Sophia Martinez</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">sophia.martinez@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 3</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Female</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Gifted in music</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">890 Oak St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">09/09/2007</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">sophiamartinez@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">321-654-3210</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(9)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(9)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(9)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                <tr id="student-10">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">10</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Olivia Hernandez</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">olivia.hernandez@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 5</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Female</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Strong leadership skills</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">123 Elm St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">10/10/2005</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">oliviahernandez@parents.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">987-654-3210</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(10)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(10)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(10)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+      
+
+                               <!-- View Student Modal -->
+   <!-- Modal for Viewing Student Details -->
+   <div class="modal" id="viewStudentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;">
+    <div class="modal-content" style="position: relative; background: #fff; padding: 20px; width: 50%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+        <!-- Close Icon -->
+        <span 
+            onclick="closeViewStudentModal()" 
+            style="position: absolute; top: 10px; right: 15px; font-size: 24px; font-weight: bold; color: #333; cursor: pointer;" 
+            title="Close">&times;</span>
+        <h2 style="text-align: center; margin-bottom: 20px;">View Student Details</h2>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Student ID:</label>
+            <input type="text" id="viewStudentId" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Student Name:</label>
+            <input type="text" id="viewStudentName" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Email Address:</label>
+            <input type="email" id="viewStudentEmail" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Grade:</label>
+            <input type="text" id="viewStudentGrade" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Gender:</label>
+            <input type="text" id="viewStudentGender" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Details:</label>
+            <textarea id="viewStudentDetails" readonly rows="3" style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Address:</label>
+            <textarea id="viewStudentAddress" readonly rows="3" style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Birthday:</label>
+            <input type="date" id="viewStudentBirthday" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Parent Email:</label>
+            <input type="email" id="viewParentEmail" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Parent Contact Number:</label>
+            <input type="tel" id="viewParentContact" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+    
+</div>
+
+        <button type="button" onclick="closeViewStudentModal()">Close</button>
+    </form>
+</div>
+<!-- Modal for Editing Student Details -->
+<div class="modal" id="editStudentModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); justify-content: center; align-items: center;">
+    <div class="modal-content" style="position: relative; background: #fff; padding: 20px; width: 50%; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+        <!-- Close Icon -->
+        <span onclick="closeEditStudentModal()" style="position: absolute; top: 10px; right: 15px; font-size: 24px; font-weight: bold; color: #333; cursor: pointer;" title="Close">&times;</span>
+        <h2 style="text-align: center; margin-bottom: 20px;">Edit Student Details</h2>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Student ID:</label>
+            <input type="text" id="editStudentId" readonly style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Student Name:</label>
+            <input type="text" id="editStudentName" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Email Address:</label>
+            <input type="email" id="editStudentEmail" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Grade:</label>
+            <input type="text" id="editStudentGrade" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Gender:</label>
+            <input type="text" id="editStudentGender" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Details:</label>
+            <textarea id="editStudentDetails" rows="3" style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Address:</label>
+            <textarea id="editStudentAddress" rows="3" style="width: 100%; padding: 8px; margin-top: 5px;"></textarea>
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Birthday:</label>
+            <input type="date" id="editStudentBirthday" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Parent Email:</label>
+            <input type="email" id="editParentEmail" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label>Parent Contact Number:</label>
+            <input type="tel" id="editParentContact" style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+        <button onclick="saveStudentDetails()" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px;">Save</button>
+    </div>
+</div>          
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            
+            </div>
+            
+        </main>
+        
+    </div>
+    <script>
+        // Retrieve the logo and school name from localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            const logo = localStorage.getItem('schoolLogo'); // Retrieve the logo (base64 encoded)
+            const schoolName = localStorage.getItem('schoolName'); // Retrieve the school name
+        
+            // Display the logo if available
+            const profileLogo = document.getElementById('profileLogo');
+            if (logo) {
+                profileLogo.style.backgroundImage = `url(${logo})`; // Set the background image
+            }
+        
+            // Display the school name if available
+            const schoolNameElement = document.getElementById('schoolNameDisplay');
+            if (schoolName) {
+                schoolNameElement.textContent = schoolName; // Set the text content to the saved school name
+            }
+        });
+           //Profile
+document.addEventListener("DOMContentLoaded", () => {
+    // Check if user is logged in (email exists in localStorage)
+    const email = localStorage.getItem("currentUserEmail");
+    if (email) {
+        const userData = JSON.parse(localStorage.getItem(email));
+        if (userData && userData.username) {
+            // Display the username in the designated span
+            document.getElementById("usernameDisplay").textContent = `Welcome, ${userData.username}!`;
+        }
+    } else {
+        // Redirect to login page if no email is stored (user not logged in)
+        window.location.href = "login.html";
+    }
+});
+
+function toggleDropdown() {
+        const dropdown = document.getElementById('logoutDropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        const dropdown = document.getElementById('logoutDropdown');
+        const userSection = document.querySelector('.user');
+        if (dropdown.style.display === 'block' && !userSection.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    function logout() {
+        alert('Logging out...');
+        // Add your logout logic here
+    }
+    //messages
+    // Toggle message dropdown visibility
+    document.querySelector('.las.la-envelope').addEventListener('click', function() {
+        const dropdown = document.querySelector('.message-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    //Notification
+    document.addEventListener("DOMContentLoaded", function() {
+       
+        const notifyIcon = document.querySelector('.las.la-bell');
+        const dropdown = document.querySelector('.notification-dropdown');
+
+        
+        notifyIcon.addEventListener('click', function() {
+            
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+       
+        window.addEventListener('click', function(event) {
+            if (!notifyIcon.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    });
+
+// Logout function
+function logout() {
+    // Remove the user data from localStorage (clearing session)
+    localStorage.removeItem("currentUserEmail");
+
+    // Redirect the user to the login page after logout
+    window.location.href = "http://127.0.0.1:5500/Frontend/index.html";
+ 
+}
+ // Function to open the Add Student modal
+// Open the Add Student Modal
+function openAddStudentModal() {
+    document.getElementById("addStudentModal").style.display = "block";
+}
+
+// Close the Add Student Modal
+function closeAddStudentModal() {
+    document.getElementById("addStudentModal").style.display = "none";
+}
+
+// Add functionality on DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+    // Handle form submission for adding a student
+    document.getElementById("addStudentForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Get form values
+        const studentId = document.getElementById("studentId").value;
+        const studentName = document.getElementById("studentName").value;
+        const studentEmail = document.getElementById("studentEmail").value;
+        const studentSection = document.getElementById("studentSection").value;
+        const studentGender = document.getElementById("studentGender").value;
+        const studentDetails = document.getElementById("studentDetails").value;
+        const studentAddress = document.getElementById("studentAddress").value;
+        const studentBirthday = document.getElementById("studentBirthday").value;
+        const parentEmail = document.getElementById("parentEmail").value;
+        const parentContact = document.getElementById("parentContact").value;
+
+        // Create a new student row
+        const studentRow = document.createElement("tr");
+        studentRow.id = `student-${studentId}`;
+        studentRow.innerHTML = `
+            <td>${studentId}</td>
+            <td>${studentName}</td>
+            <td>${studentEmail}</td>
+            <td>${studentSection}</td>
+            <td>${studentGender}</td>
+            <td>${studentDetails}</td>
+            <td>${studentAddress}</td>
+            <td>${studentBirthday}</td>
+            <td>${parentEmail}</td>
+            <td>${parentContact}</td>
+            <td>
+                <div class="actions">
+                    <span class="las la-eye" title="View" onclick="viewStudent('${studentId}')"></span>
+                    <span class="las la-edit" title="Edit" onclick="editStudent('${studentId}')"></span>
+                    <span class="las la-trash" title="Delete" onclick="deleteStudent('${studentId}')"></span>
+                </div>
+            </td>
+        `;
+
+        // Append the new row to the student list (make sure the table has an ID of "studentList")
+        document.getElementById("studentList").appendChild(studentRow);
+
+        // Clear the form fields
+        document.getElementById("addStudentForm").reset();
+
+        // Close the modal
+        closeAddStudentModal();
+    });
+});
+
+function viewStudent(studentId) {
+    const studentRow = document.getElementById(`student-${studentId}`);
+    if (!studentRow) {
+        alert("Student not found!");
+        return;
+    }
+
+    // Log the extracted values to check
+    console.log("Viewing student:", studentId);
+    const studentIdText = studentRow.children[0].innerText;
+    const studentName = studentRow.children[1].innerText;
+    const studentEmail = studentRow.children[2].innerText;
+    const studentGrade = studentRow.children[3].innerText;
+    const studentGender = studentRow.children[4].innerText;
+    const studentAchievement = studentRow.children[5].innerText;
+    const studentAddress = studentRow.children[6].innerText;
+    const studentDOB = studentRow.children[7].innerText;
+    const studentParentEmail = studentRow.children[8].innerText;
+    const studentPhone = studentRow.children[9].innerText;
+
+    // Log to ensure modal elements are found
+    document.getElementById('viewStudentId').value = studentIdText;
+document.getElementById('viewStudentName').value = studentName;
+document.getElementById('viewStudentEmail').value = studentEmail;
+document.getElementById('viewStudentGrade').value = studentGrade;
+document.getElementById('viewStudentGender').value = studentGender;
+document.getElementById('viewStudentDetails').value = studentAchievement; // Updated field
+document.getElementById('viewStudentAddress').value = studentAddress;
+document.getElementById('viewStudentBirthday').value = studentDOB; // Updated field
+document.getElementById('viewParentEmail').value = studentParentEmail; // Updated field
+document.getElementById('viewParentContact').value = studentPhone; // Updated field
+    // Display the modal
+    document.getElementById('viewStudentModal').style.display = 'flex';
+    
+}
+function closeViewStudentModal() {
+    // Hide the modal by setting the display style to 'none'
+    document.getElementById('viewStudentModal').style.display = 'none';
+}
+
+
+// Function to edit student
+function editStudent(studentId) {
+    console.log("Edit clicked for student " + studentId);  // Debugging line
+    
+    // Get the student row by ID
+    const studentRow = document.getElementById(`student-${studentId}`);
+    if (!studentRow) {
+        alert("Student not found!");
+        return;
+    }
+
+    // Extract student data from the row
+    const studentName = studentRow.children[1].innerText;
+    const studentEmail = studentRow.children[2].innerText;
+    const studentGrade = studentRow.children[3].innerText;
+    const studentGender = studentRow.children[4].innerText;
+    const studentDetails = studentRow.children[5].innerText;
+    const studentAddress = studentRow.children[6].innerText;
+    const studentBirthday = studentRow.children[7].innerText;
+    const parentEmail = studentRow.children[8].innerText;
+    const parentContact = studentRow.children[9].innerText;
+
+    // Populate the modal fields
+    document.getElementById('editStudentId').value = studentId;
+    document.getElementById('editStudentName').value = studentName;
+    document.getElementById('editStudentEmail').value = studentEmail;
+    document.getElementById('editStudentGrade').value = studentGrade;
+    document.getElementById('editStudentGender').value = studentGender;
+    document.getElementById('editStudentDetails').value = studentDetails;
+    document.getElementById('editStudentAddress').value = studentAddress;
+    document.getElementById('editStudentBirthday').value = studentBirthday;
+    document.getElementById('editParentEmail').value = parentEmail;
+    document.getElementById('editParentContact').value = parentContact;
+
+    // Show the modal
+    document.getElementById('editStudentModal').style.display = 'flex';
+}
+
+// Function to close the modal
+function closeEditStudentModal() {
+    document.getElementById('editStudentModal').style.display = 'none';
+}
+
+// Save updated student details
+function saveStudentDetails() {
+    // Get the updated values from the modal inputs
+    const studentId = document.getElementById('editStudentId').value;
+    const studentName = document.getElementById('editStudentName').value;
+    const studentEmail = document.getElementById('editStudentEmail').value;
+    const studentGrade = document.getElementById('editStudentGrade').value;
+    const studentGender = document.getElementById('editStudentGender').value;
+    const studentDetails = document.getElementById('editStudentDetails').value;
+    const studentAddress = document.getElementById('editStudentAddress').value;
+    const studentBirthday = document.getElementById('editStudentBirthday').value;
+    const parentEmail = document.getElementById('editParentEmail').value;
+    const parentContact = document.getElementById('editParentContact').value;
+
+    // Find the student row and update its contents
+    const studentRow = document.getElementById(`student-${studentId}`);
+    if (studentRow) {
+        studentRow.children[1].innerText = studentName;
+        studentRow.children[2].innerText = studentEmail;
+        studentRow.children[3].innerText = studentGrade;
+        studentRow.children[4].innerText = studentGender;
+        studentRow.children[5].innerText = studentDetails;
+        studentRow.children[6].innerText = studentAddress;
+        studentRow.children[7].innerText = studentBirthday;
+        studentRow.children[8].innerText = parentEmail;
+        studentRow.children[9].innerText = parentContact;
+
+        // Close the modal
+        closeEditStudentModal();
+    } else {
+        alert("Student not found!");
+    }
+}
+// Function to delete student from the table
+function deleteStudent(studentId) {
+    const row = document.querySelector(`#student-${studentId}`);
+    if (row) {
+        row.remove();
+    } else {
+        alert("Student not found!");
+    }
+}
+
+
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@iconscout/font-awesome/icons/"></script>
+   
+</body>
+</html>

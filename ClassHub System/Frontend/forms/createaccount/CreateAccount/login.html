@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/Frontend/TeacherPortal/School Admin/Admin-Dashboard-Modern-master/img/logo1.png" rel="icon">
+    <link href="/Frontend/TeacherPortal/School Admin/Admin-Dashboard-Modern-master/img/logo1.png" rel="apple-touch-icon">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("loginForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+    
+                const email = document.getElementById("loginEmail").value.toLowerCase(); // Normalize email
+                const password = document.getElementById("loginPassword").value;
+                const messageDiv = document.getElementById("message");
+    
+                // Retrieve user data from localStorage
+                const userData = JSON.parse(localStorage.getItem(email));
+    
+                if (!userData) {
+                    messageDiv.innerHTML = "<div class='alert alert-danger'>User not found. Please check your credentials.</div>";
+                    return;
+                }
+    
+                if (userData.password !== password) {
+                    messageDiv.innerHTML = "<div class='alert alert-danger'>Incorrect password. Please try again.</div>";
+                    return;
+                }
+    
+                messageDiv.innerHTML = "<div class='alert alert-success'>Login successful! Redirecting...</div>";
+    
+                // Store the logged-in user's email in localStorage
+                localStorage.setItem("currentUserEmail", email);
+    
+                setTimeout(() => {
+                    const roleRedirects = {
+                        Teacher: "http://127.0.0.1:5500/Frontend/TeacherPortal/School%20Admin/Admin-Dashboard-Modern-master/index.html",
+                        "School Admin": "http://127.0.0.1:5500/Frontend/forms/WelcomeForm/welcomeform.html",
+                        "Super Admin": "http://127.0.0.1:5500/Frontend/SuperAdmin/School%20Admin/Admin-Dashboard-Modern-master/index.html",
+                        "Teacher Portal": "http://127.0.0.1:5500/Frontend/TeacherPortal/School%20Admin/Admin-Dashboard-Modern-master/index.html"
+                    };
+    
+                    window.location.href = roleRedirects[userData.role] || "dashboard.html";
+                }, 2000);
+            });
+        });
+    </script>
+    
+    
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row border rounded-5 p-3 bg-white shadow box-area">
+            <div class="col-md-6 left-box text-center bg-primary text-white">
+                <img src="/Frontend/assets/img/logo1.png" style="width:100px;">
+                <p class="fs-2 fw-bold">Welcome Back</p>
+                
+                <p>Log in to continue to your account.</p>
+               
+            </div>
+            
+            <div class="col-md-6 right-box">
+                <h2>Login to Your Account</h2>
+                <form id="loginForm">
+                    <input type="email" id="loginEmail" placeholder="Email Address" class="form-control mb-2" required>
+                    <input type="password" id="loginPassword" placeholder="Password" class="form-control mb-2" required>
+                    <button type="submit" class="btn btn-primary w-100 mb-2">Login</button>
+                    <div id="message"></div>
+                 
+                    
+                  
+                    <small>Don't have an account? <a href="signup.html">Sign Up</a></small>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="forgotPasswordModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeForgotPasswordModal()">&times;</span>
+            <h2>Forgot Password</h2>
+            <p>Please enter your email address to reset your password:</p>
+            <form id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="forgotPasswordEmail">Email Address:</label>
+                    <input type="email" id="forgotPasswordEmail" class="form-control" placeholder="Enter your email" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Send Reset Link</button>
+            </form>
+            <div id="forgotPasswordMessage" style="margin-top: 10px;"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Super Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="/Frontend/assets/img/logo1.png" rel="icon">
+    <link href="/Frontend/assets/img/logo1.png" rel="apple-touch-icon">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+
+<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+
+
+<body>
+   <input type="checkbox" id="menu-toggle">
+   <div class="sidebar">
+    <div class="side-header">
+        <!-- Display the uploaded logo on the dashboard -->
+        <img id="dashboardLogo" src="/Frontend/assets/img/logo1.png" alt="Logo" class="logo">
+      </div>
+    
+      <div class="side-content">
+        <div class="profile">
+          <!-- Display the school logo here -->
+          <div id="profileLogo" class="profile-img bg-img" style="background-image: url();"></div>
+          <!-- Display the school name here -->
+          <h4 id="schoolNameDisplay"></h4>
+       
+     
+      </div>
+             <div class="side-menu">
+                <ul>
+                    <li>
+                       <a href="index.html" >
+                            <span class="las la-home"></span>
+                            <small>Dashboard</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="teachers.html">
+                            <span class="las la-user-alt"></span>
+                            <small>Teachers</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="students.html" class="active">
+                            <span class="las la-user-alt"></span>
+                            <small>Students</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Attendance.html">
+                            <span class="las la-clipboard-list"></span>
+                            <small>Attendances</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="analytics.html">
+                            <span class="las la-chart-line"></span>
+                            <small>Reports and Analytics</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="las la-cog"></span>
+                            <small>Settings</small>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                
+                <div class="header-menu">
+                    <label for="">
+                        <span class="las la-search"></span>
+                    </label>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-envelope"></span>
+                        <span class="notify">4</span>
+                        <div class="message-dropdown">
+                            <h3>Messages</h3>
+                            <ul>
+                                <li><strong>Magallanes School:</strong> Update on the seminar schedule.</li>
+                                <li><strong>Caasinan School:</strong> Request for attendance data.</li>
+                                <li><strong>Caloc-An School:</strong> Congratulatory message.</li>
+                                <li><strong>La Union School:</strong> Follow-up on collaboration.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-bell"></span>
+                        <span class="notify">3</span>
+                        <div class="notification-dropdown">
+                            <h3>Notifications</h3>
+                            <ul>
+                                <li>System update available.</li>
+                                <li>New task assigned by Admin.</li>
+                                <li>Meeting scheduled for 3 PM.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="user">
+                        <!-- Display Username -->
+                  <span id="usernameDisplay" style="font-weight: bold; font-size: 16px;"></span>
+              
+                  <!-- Logout Button -->
+                  <span class="las la-power-off"></span>
+                  <span onclick="logout()" style="cursor: pointer; color: red; font-weight: bold;">Logout</span>
+              </div>
+                </div>
+            </div>
+        </header>
+       
+        
+        <main>
+            
+            <div class="page-header">
+                <h1>Students</h1>
+                <small>Home / Students</small>
+            </div>
+            
+            <div class="page-content">
+            
+    
+                  
+
+                   
+                </div>
+
+
+                <div class="records table-responsive">
+
+                    <div class="record-header">
+                      
+
+                        <div class="browse">
+                           <input type="search" placeholder="Search" class="record-search">
+                            <select name="" id="">
+                                <option value="">Status</option>
+                            </select>
+                        </div>
+                       <!-- Add Student Button -->
+<div class="add-school">
+    <button class="btn add-school-btn" onclick="openAddStudentModal()">Add Student</button>
+</div>
+
+<!-- Modal for adding student -->
+<div class="modal" id="addStudentModal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddStudentModal()">&times;</span>
+        <h2>Add Student</h2>
+        <form id="addStudentForm">
+            <div class="form-group">
+                <label for="studentId">Student ID:</label>
+                <input type="number" id="studentId" name="studentId" required placeholder="Enter unique Student ID">
+            </div>
+            <div class="form-group">
+                <label for="studentName">Name:</label>
+                <input type="text" id="studentName" name="studentName" required placeholder="Enter student's name">
+            </div>
+            <div class="form-group">
+                <label for="studentEmail">Email:</label>
+                <input type="email" id="studentEmail" name="studentEmail" required placeholder="Enter student's email">
+            </div>
+            <div class="form-group">
+                <label for="studentSection">Section:</label>
+                <input type="text" id="studentSection" name="studentSection" required placeholder="Enter student's section">
+            </div>
+            <div class="form-group">
+                <label for="studentGender">Gender:</label>
+                <select id="studentGender" name="studentGender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="studentDetails">Details:</label>
+                <textarea id="studentDetails" name="studentDetails" required placeholder="Enter additional details"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="studentAddress">Address:</label>
+                <textarea id="studentAddress" name="studentAddress" required placeholder="Enter student's address"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="studentBirthday">Birthday:</label>
+                <input type="date" id="studentBirthday" name="studentBirthday" required>
+            </div>
+            <div class="form-group">
+                <label for="parentEmail">Parent's Email:</label>
+                <input type="email" id="parentEmail" name="parentEmail" required placeholder="Enter parent's email">
+            </div>
+            <div class="form-group">
+                <label for="parentPhone">Parent's Contact:</label>
+                <input type="tel" id="parentPhone" name="parentPhone" required placeholder="Enter parent's phone number">
+            </div>
+            <div class="container">
+                <button type="submit" class="btn">Add Student</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+                    </div>
+
+                    <div style="overflow-x: auto; max-width: 100%; margin-top: 10px;">
+                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                            <thead>
+                                <tr>
+                                    <th style="border: 2px solid #ddd; padding: 8px;">Student ID</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span> NAME</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span>EMAIL ADDRESS</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span>SECTION</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span>GENDER</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span>DETAILS</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span>ADDRESS</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span>BIRTHDAY</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span>PARENT EMAIL</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span>PARENT CONTACT NUMBER</th>
+                                    <th style="border: 2px solid #ddd; padding: 8px;"><span class="las la-sort"></span> ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studentList">
+                                <tr id="student-101" onclick="showStudentDetails(101)">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">101</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">John Doe</td>     
+                                    <td style="border: 2px solid #ddd; padding: 8px;">johndoe@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 5</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Male</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Details here</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">123 Main St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">2005-06-15</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">parent@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">555-1234</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(101)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(101)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(101)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <tr id="student-102" onclick="showStudentDetails(102)">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">102</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Jane Smith</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">janesmith@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 6</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Female</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Loves art and music</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">456 Elm St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">2006-08-20</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">parent.jane@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">555-6789</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(101)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(101)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(101)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="student-103"  onclick="showStudentDetails(103)">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">103</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Alice Johnson</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">alicej@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 7</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Female</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Chess club member</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">789 Maple St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">2007-03-12</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">parent.alice@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">555-9876</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(101)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(101)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(101)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="student-104" onclick="showStudentDetails(104)">
+                                    <td style="border: 2px solid #ddd; padding: 8px;">104</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Michael Brown</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">michaelb@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Grade 8</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Male</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">Football team captain</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">101 Pine St</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">2004-11-22</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">parent.michael@example.com</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">555-1122</td>
+                                    <td style="border: 2px solid #ddd; padding: 8px;">
+                                        <div class="actions" style="display: flex; gap: 10px; align-items: center;">
+                                            <span class="las la-eye" style="font-size: 20px; cursor: pointer;" title="View" onclick="viewStudent(101)"></span>
+                                            <span class="las la-edit" style="font-size: 20px; cursor: pointer;" title="Edit" onclick="editStudent(101)"></span>
+                                            <span class="las la-trash" style="font-size: 20px; cursor: pointer;" title="Delete" onclick="deleteStudent(101)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                  
+<!-- The Modal -->
+<div id="studentModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Student Details</h2>
+        <div class="student-image-container">
+            <img id="student-image" src="student-photo.jpg" alt="Student Image">
+        </div>
+        <h2><span id="student-name"></span></p></h2>
+        <p style="display: flex; justify-content: center; align-items: center; text-align: center;">
+            <strong>Student ID:</strong> <span id="student-id">12345</span>
+          </p>
+        <div class="contact-icons">
+            <a href="mailto:student@example.com" id="student-email-link">📧</a>
+            <a href="tel:+123456789" id="student-phone-link">📞</a>
+        </div>
+        <h3>Basic Information</h3>
+        <p><strong>Name:</strong> <span id="student-name"></span></p>
+        <p><strong>Email:</strong> <span id="student-email"></span></p>
+        <p><strong>Grade:</strong> <span id="student-grade"></span></p>
+        <p><strong>Gender:</strong> <span id="student-gender"></span></p>
+        <p><strong>Details:</strong> <span id="student-details"></span></p>
+        <p><strong>Address:</strong> <span id="student-address"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="student-dob"></span></p>
+        <p><strong>Parent's Email:</strong> <span id="student-parent-email"></span></p>
+        <p><strong>Parent's Phone:</strong> <span id="student-parent-phone"></span></p>
+         <!-- Additional Details -->
+         <h3>Additional Details</h3>
+         <p><strong>Details:</strong> <span id="student-details">Football Team Captain</span></p>
+         <p><strong>Address:</strong> <span id="student-address">101 Pine St</span></p>
+         <p><strong>Date of Birth:</strong> <span id="student-dob">2004-11-22</span></p>
+         <p><strong>Parent's Email:</strong> <span id="student-parent-email">parent@example.com</span></p>
+         <p><strong>Parent's Phone:</strong> <span id="student-parent-phone">555-1122</span></p>
+
+          <!-- Behavioral Rating Scale -->
+        <h3>Behavioral Rating Scale</h3>
+        <ul class="rating-scale">
+            <li>Respect for Peers and Authority: ⭐⭐⭐⭐⭐</li>
+            <li>Class Participation: ⭐⭐⭐⭐</li>
+            <li>Attitude Toward Learning: ⭐⭐⭐⭐</li>
+            <li>Responsibility: ⭐⭐⭐⭐⭐</li>
+            <li>Cooperation: ⭐⭐⭐⭐⭐</li>
+        </ul>
+
+        <!-- Attendance Record -->
+        <h3>Attendance Record</h3>
+        <p><strong>Present:</strong> 90%</p>
+        <p><strong>Absent:</strong> 5%</p>
+        <p><strong>Excuse:</strong> 5%</p>
+    </div>
+    </div>
+
+                    <!-- Modal for Viewing Student Details -->
+<div class="modal" id="viewStudentModal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeViewStudentModal()">&times;</span>
+        <h2>View Student Details</h2>
+        <div class="form-group">
+            <label>Student ID:</label>
+            <input type="text" id="viewStudentId" value="104" readonly>
+        </div>
+        <div class="form-group">
+            <label>Student Name:</label>
+            <input type="text" id="viewStudentName" value="Michael Brown" readonly>
+        </div>
+        <div class="form-group">
+            <label>Email Address:</label>
+            <input type="text" id="viewStudentEmail" value="michaelb@example.com" readonly>
+        </div>
+        <div class="form-group">
+            <label>Grade:</label>
+            <input type="text" id="viewStudentGrade" value="Grade 8" readonly>
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <input type="text" id="viewStudentGender" value="Male" readonly>
+        </div>
+        <div class="form-group">
+            <label>Details:</label>
+            <textarea id="viewStudentDetails" rows="3" readonly>Football team captain</textarea>
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <textarea id="viewStudentAddress" rows="3" readonly>101 Pine St</textarea>
+        </div>
+        <div class="form-group">
+            <label>Birthday:</label>
+            <input type="text" id="viewStudentBirthday" value="2004-11-22" readonly>
+        </div>
+        <div class="form-group">
+            <label>Parent Email:</label>
+            <input type="text" id="viewParentEmail" value="parent.michael@example.com" readonly>
+        </div>
+        <div class="form-group">
+            <label>Parent Contact Number:</label>
+            <input type="text" id="viewParentContact" value="555-1122" readonly>
+        </div>
+        <button class="btn" onclick="closeViewStudentModal()">Close</button>
+    </div>
+</div>
+<!-- Modal for Editing Student Details -->
+<div class="modal" id="editStudentModal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditStudentModal()">&times;</span>
+        <h2>Edit Student Details</h2>
+        <div class="form-group">
+            <label>Student ID:</label>
+            <input type="text" id="editStudentId" readonly>
+        </div>
+        <div class="form-group">
+            <label>Student Name:</label>
+            <input type="text" id="editStudentName">
+        </div>
+        <div class="form-group">
+            <label>Email Address:</label>
+            <input type="email" id="editStudentEmail">
+        </div>
+        <div class="form-group">
+            <label>Grade:</label>
+            <input type="text" id="editStudentGrade">
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <input type="text" id="editStudentGender">
+        </div>
+        <div class="form-group">
+            <label>Details:</label>
+            <textarea id="editStudentDetails" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <textarea id="editStudentAddress" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Birthday:</label>
+            <input type="date" id="editStudentBirthday">
+        </div>
+        <div class="form-group">
+            <label>Parent Email:</label>
+            <input type="email" id="editParentEmail">
+        </div>
+        <div class="form-group">
+            <label>Parent Contact Number:</label>
+            <input type="tel" id="editParentContact">
+        </div>
+        <button class="btn" onclick="saveStudentDetails()">Save</button>
+    </div>
+</div>
+
+
+
+                                
+                               
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            
+            </div>
+            
+        </main>
+        
+    </div>
+    <script>
+        // Retrieve the logo and school name from localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            const logo = localStorage.getItem('schoolLogo'); // Retrieve the logo (base64 encoded)
+            const schoolName = localStorage.getItem('schoolName'); // Retrieve the school name
+        
+            // Display the logo if available
+            const profileLogo = document.getElementById('profileLogo');
+            if (logo) {
+                profileLogo.style.backgroundImage = `url(${logo})`; // Set the background image
+            }
+        
+            // Display the school name if available
+            const schoolNameElement = document.getElementById('schoolNameDisplay');
+            if (schoolName) {
+                schoolNameElement.textContent = schoolName; // Set the text content to the saved school name
+            }
+        });
+           //Profile
+document.addEventListener("DOMContentLoaded", () => {
+    // Check if user is logged in (email exists in localStorage)
+    const email = localStorage.getItem("currentUserEmail");
+    if (email) {
+        const userData = JSON.parse(localStorage.getItem(email));
+        if (userData && userData.username) {
+            // Display the username in the designated span
+            document.getElementById("usernameDisplay").textContent = `Welcome, ${userData.username}!`;
+        }
+    } else {
+        // Redirect to login page if no email is stored (user not logged in)
+        window.location.href = "login.html";
+    }
+});
+
+// Logout function
+function logout() {
+    // Remove the user data from localStorage (clearing session)
+    localStorage.removeItem("currentUserEmail");
+
+    // Redirect the user to the login page after logout
+    window.location.href = "http://127.0.0.1:5500/Frontend/index.html";
+ 
+}
+    </script>
+    <script src="/Frontend/School Admin/School Admin/Admin-Dashboard-Modern-master/js/script.js"></script>
+</body>
+</html>

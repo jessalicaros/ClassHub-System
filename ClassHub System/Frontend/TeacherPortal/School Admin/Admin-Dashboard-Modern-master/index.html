@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Teacher Portal</title>
+    <link rel="stylesheet" href="style.css">
+ 
+    <link href="/Frontend/assets/img/logo1.png" rel="icon">
+    <link href="/Frontend/assets/img/logo1.png" rel="apple-touch-icon">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+<script type="text/javascript"src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+</head>
+<style>
+.dashboard-image {
+    width: 100%;                     
+    height: 100%;                    
+    object-fit: cover;  
+    display: flex;                   
+    justify-content: center;         
+    align-items: center;             
+    width: 400%;                    
+    height: 400px;                
+    overflow: hidden;               
+    margin-top: 20px;                      
+}
+
+</style>
+
+<body>
+   <input type="checkbox" id="menu-toggle">
+    <div class="sidebar">
+        <div class="side-header">
+            <!-- Display the uploaded logo on the dashboard -->
+            <img id="dashboardLogo" src="/Frontend/assets/img/logo1.png" alt="Logo" class="logo">
+          </div>
+        
+          <div class="side-content">
+            <div class="profile">
+              <!-- Display the school logo here -->
+              <div id="profileLogo" class="profile-img bg-img" style="background-image: url();"></div>
+              <!-- Display the school name here -->
+              <h4 id="schoolNameDisplay"></h4>
+           
+         
+          </div>
+             <div class="side-menu">
+                <ul>
+                    <li>
+                       <a href="index.html" class="active">
+                            <span class="las la-home"></span>
+                            <small>Dashboard</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="students.html">
+                            <span class="las la-user-alt"></span>
+                            <small>Students</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Attendance.html">
+                            <span class="las la-clipboard-list"></span>
+                            <small>Attendances</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Profile.html">
+                            <span class="las la-cog"></span>
+                            <small>My Profile</small>
+                        </a>
+                        
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars" style="font-size: 25px; position: relative; top: 5px;"></span>
+                </label>
+                
+                <div class="header-menu">
+                   
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Message Icon (Font Awesome) -->
+                        <span class="las la-envelope" style="font-size: 24px; color:black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: green; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">7</span> 
+                    
+                        <!-- Message Dropdown -->
+                        <div class="message-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="message-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <img src="/Frontend/assets/img/m.png" alt="Message Icon" style="width: 16px; height: 16px;"/>
+                                <h3 style="font-size: 16px; font-weight: bold;">MESSAGES</h3>
+                                <span class="message-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="messages-list" style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Reminder: Submit the grades for your Algebra class by Friday, 3 PM.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Student: John Doe</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Can you please clarify the instructions for the final project? I'm a bit confused.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Math Department</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">The next department meeting is scheduled for Tuesday at 2 PM. Please be prepared to discuss the new curriculum changes.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Your request for additional teaching resources has been approved. Please visit the resource center to pick them up.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">System maintenance scheduled for 2 AM tonight. Please save your work before then.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Parent: Anna</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">My child has been struggling with homework. Would it be possible to arrange additional support or tutoring?</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">You have an upcoming professional development workshop this Friday. Please confirm your attendance.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Notification Icon (Font Awesome) -->
+                        <span class="las la-bell" style="font-size: 24px; color: black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">3</span> 
+                    
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="notification-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span class="notification-app-icon" style="font-size: 18px; color: #FFA500;">🔔</span> <!-- Notification Bell Icon -->
+                                <h3 style="font-size: 16px; font-weight: bold;">NOTIFICATIONS</h3>
+                                <span class="notification-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="notifications-list" style="list-style: none; padding: 0; margin: 0;">
+                                <!-- Example Notification 1: System Update -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        System update available. Please update your application to the latest version for improved performance.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 2: New Task Assigned -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        New task assigned by Admin: Prepare class report for this month. Deadline: Friday, 5 PM.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 3: Meeting Scheduled -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        Meeting scheduled for 3 PM today regarding new school policies. Please attend.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+
+
+                    <div class="user" style="position: relative; display: flex; align-items: center; padding-right: 50px;">
+                        <!-- Display Username -->
+                        <div 
+                            style="display: flex; align-items: center; font-size: 13px; cursor: pointer;" 
+                            onclick="toggleDropdown()"
+                        >
+                            <img 
+                                id="userIcon" 
+                                src="/Frontend/assets/img/user (1).png" 
+                                alt="User Icon" 
+                                style="border-radius: 20%; width: 20px; height: 20px; margin-right: 5px;"
+                            />
+                            <span id="usernameDisplay" style="font-weight: bold;">Username</span>
+                            <span 
+                                id="dropdownIcon" 
+                                style="margin-left: 5px; font-size: 14px;"
+                            >
+                                ▼
+                            </span>
+                        </div>
+                        
+                        <!-- Dropdown Menu -->
+                        <div 
+                            id="logoutDropdown" 
+                            style="
+                                display: none; 
+                                position: absolute; 
+                                top: 30px; 
+                                right: 0; 
+                                background-color: white; 
+                                border: 1px solid #ccc; 
+                                border-radius: 5px; 
+                                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+                                padding: 10px; 
+                                z-index: 1000;
+                                min-width: 120px;
+                                text-align: center;
+                            "
+                        >
+                            <span 
+                                onclick="logout()" 
+                                style="cursor: pointer; color: red; font-weight: bold; display: block;"
+                            >
+                                Logout
+                            </span>
+              </div>
+                </div>
+            </div>
+        </header>
+        
+        
+        <main>
+            
+            <div class="page-header">
+                <h1>Dashboard</h1>
+                <small>Home / Dashboard</small>
+            </div>
+            
+            <div class="page-content">
+            
+                <!-- Left Column: Attendance Cards -->
+                <div class="col-md-8">
+                    <div class="row analytics">
+                        <!-- Present Card -->
+                        <div class="col-md-4">
+                            <div class="card text-center attendance-card" onmouseover="animateCount('presentCount', 145)">
+                                <h4 class="card-title text-success">Present | Today</h4>
+                                <div class="attendance-number">
+                                    <h2 id="presentCount">150</h2>
+                                    <small class="text-muted">12% increase</small>
+                                </div>
+                            </div>
+                           
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="card text-center attendance-card" onmouseover="animateCount('absentCount', 32)">
+                                <h4 class="card-title text-danger">Absent | Today</h4>
+                                <div class="attendance-number">
+                                    <h2 id="absentCount">200</h2>
+                                    <small class="text-muted">8% increase</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="col-md-4">
+                            <div class="card text-center attendance-card" onmouseover="animateCount('monthlyCount', 350)">
+                                <h4 class="card-title text-primary">Attendance | This Month</h4>
+                                <div class="attendance-number">
+                                    <h2 id="monthlyCount">5</h2>
+                                    <small class="text-muted">15% increase</small>
+                                </div>
+                            </div>
+                           
+                            
+                        </div>
+                        
+                        <div class="card text-center attendance-card">
+                            <h4 class="text-center notification-title">Notification</h4>
+                            <div class="notification-content">
+                            <!-- Notification 1 -->
+                            <div class="notification">
+                                <div class="notification-header">
+                                    <strong>Absent Alert: Michael</strong>
+                                    <button class="send-email-btn" id="notifyButton" onclick="sendEmail('Michael', 'licarosmariajessamie@gmail.com', 'Your child was absent today.')">
+                                        Notify Parent
+                                    </button>
+                                </div>
+                                <p>Your student, Michael, has 3 consecutive absences this week.</p>
+                            </div>
+
+                            <!-- Notification 2 -->
+                            <div class="notification">
+                                <div class="notification-header">
+                                    <strong>Absent Alert: Dianne</strong>
+                                    <button class="send-email-btn" id="notifyButton"  onclick="sendEmail('Dianne', 'indemorlino@gmail.com')">
+                                        Notify Parent
+                                    </button>
+                                </div>
+                                <p>Your student, Dianne, from section Ampalaya, has 3 consecutive absences this week.</p>
+                            </div>
+                        
+                     
+             
+               
+    </tbody>
+    
+            </table>
+              <!-- Right Column: Attendance Chart -->
+              <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Monthly Attendance</h4>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <canvas id="attendanceCanvas"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    
+     </div>
+                 
+                
+
+            
+    </div>
+            
+</main>
+        <!-- Support Button -->
+    <button class="support-btn" id="supportBtn">
+        <i class="fas fa-headset"></i> Support
+    </button>
+
+    <!-- Chatbot Container -->
+    <div id="chatContainer" class="chat-container">
+        <div class="chat-header">
+            FAQ Bot
+        </div>
+        <div class="chat-body" id="chatBody">
+            <div class="chat-bubble bot">
+                Hi! I'm here to help. What do you want to know?
+            </div>
+            <div class="chat-bubble bot">
+                <strong>Choose a question:</strong>
+                <ul>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('How can I assess a student?')">How can I assess a student?</button></li>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('How can I generate a report?')">How can I generate a report?</button></li>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('How do I contact support?')">How do I contact support?</button></li>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('Can I manage another teacher’s data?')">Can I manage another teacher’s data?</button></li>
+                    <li><button class="btn btn-link p-0" onclick="sendMessage('How do I notify parents about attendance issues?')">How do I notify parents about attendance issues?</button></li>
+                
+                </ul>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <button class="btn w-100" id="closeChat" style="background-color: #f07810;">Close</button>
+        </div>
+    </div>
+        
+    </div>
+    <script>
+        const supportBtn = document.getElementById('supportBtn');
+        const chatContainer = document.getElementById('chatContainer');
+        const chatBody = document.getElementById('chatBody');
+        const closeChat = document.getElementById('closeChat');
+
+        // Toggle chatbot visibility
+        supportBtn.addEventListener('click', () => {
+            chatContainer.style.display = chatContainer.style.display === 'none' || chatContainer.style.display === '' ? 'flex' : 'none';
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatContainer.style.display = 'none';
+        });
+
+        // Handle user message and bot response
+        function sendMessage(message) {
+            appendMessage('user', message);
+
+            // Simulate bot response
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                appendMessage('bot', response);
+            }, 500);
+        }
+
+        function appendMessage(sender, text) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('chat-bubble', sender);
+            bubble.innerText = text;
+            chatBody.appendChild(bubble);
+
+            // Scroll to the bottom
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function getBotResponse(message) {
+            switch (message) {
+                case 'How can I assess a student?':
+                return 'Go to Student Menu, then click/choose a student. Rate and provide feedback ';
+                case 'How do I reset my password?':
+                    return 'Click on "Forgot Password" on the login page and follow the instructions.';
+                case 'How can I generate a report?':
+                    return 'Go to the Student Menu, select "students," and provide rate and feedback it will generate report of a student automatically.';
+                case 'How do I contact support?':
+                    return 'Email us at support@classhub.com.';
+                case 'Can I manage another teacher’s data?':
+                    return 'No, teachers can only manage data for their assigned classes unless given special permissions by the admin.';
+                case 'How do I notify parents about attendance issues?':
+                    return 'Use the "Notifications" feature in the Admin Dashboard to send automated or manual alerts to parents via email.';
+                default:
+                    return "Sorry, I didn't understand that. Please choose a question from the list.";
+            }
+        }
+         // Initialize EmailJS with your Public API Key
+         emailjs.init("MFxO62waQCM9tT09N");
+         function sendEmail(studentName, parentEmail, message) {
+    // Sending the email using emailjs
+    emailjs.send("service_21gofei", "template_gfcn5r3", {
+        student_name: studentName,
+        parent_email: parentEmail,
+        message: message,
+    })
+    .then(
+        function(response) {
+            alert('Email sent successfully!');
+            console.log('SUCCESS!', response.status, response.text);
+            
+            // Change the button text to 'Notified'
+            const button = document.getElementById("notifyButton");
+            button.textContent = 'Notified';
+            button.disabled = true;  // Optionally, disable the button to prevent resending
+        },
+        function(error) {
+            alert('Failed to send email.');
+            console.error('FAILED...', error);
+        }
+    );
+}
+// Retrieve the logo and school name from localStorage
+document.addEventListener("DOMContentLoaded", function() {
+            const logo = localStorage.getItem('schoolLogo'); // Retrieve the logo (base64 encoded)
+            const schoolName = localStorage.getItem('schoolName'); // Retrieve the school name
+        
+            // Display the logo if available
+            const profileLogo = document.getElementById('profileLogo');
+            if (logo) {
+                profileLogo.style.backgroundImage = `url(${logo})`; // Set the background image
+            }
+        
+            // Display the school name if available
+            const schoolNameElement = document.getElementById('schoolNameDisplay');
+            if (schoolName) {
+                schoolNameElement.textContent = schoolName; // Set the text content to the saved school name
+            }
+        });
+
+        //Profile
+document.addEventListener("DOMContentLoaded", () => {
+    // Check if user is logged in (email exists in localStorage)
+    const email = localStorage.getItem("currentUserEmail");
+    if (email) {
+        const userData = JSON.parse(localStorage.getItem(email));
+        if (userData && userData.username) {
+            // Display the username in the designated span
+            document.getElementById("usernameDisplay").textContent = `Welcome, ${userData.username}!`;
+        }
+    } else {
+        // Redirect to login page if no email is stored (user not logged in)
+        window.location.href = "login.html";
+    }
+});
+
+function toggleDropdown() {
+        const dropdown = document.getElementById('logoutDropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        const dropdown = document.getElementById('logoutDropdown');
+        const userSection = document.querySelector('.user');
+        if (dropdown.style.display === 'block' && !userSection.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    function logout() {
+        alert('Logging out...');
+        // Add your logout logic here
+    }
+    //messages
+    // Toggle message dropdown visibility
+    document.querySelector('.las.la-envelope').addEventListener('click', function() {
+        const dropdown = document.querySelector('.message-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    //Notification
+    document.addEventListener("DOMContentLoaded", function() {
+       
+        const notifyIcon = document.querySelector('.las.la-bell');
+        const dropdown = document.querySelector('.notification-dropdown');
+
+        
+        notifyIcon.addEventListener('click', function() {
+            
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+       
+        window.addEventListener('click', function(event) {
+            if (!notifyIcon.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    });
+//chart
+// Function to initialize the chart
+function createAttendanceChart() {
+        const ctx = document.getElementById('attendanceCanvas').getContext('2d'); // Updated to use the new id
+
+        // Create a new Chart
+        const attendanceChart = new Chart(ctx, {
+            type: 'bar', // Use a bar chart
+            data: {
+                labels: ['Present', 'Absent', 'Excused'], // X-axis labels
+                datasets: [{
+                    label: 'Number of Students', // Label for the dataset
+                    data: [145, 32, 50], // Initial data for present, absent, and excused
+                    backgroundColor: [
+                        'rgba(40, 167, 69, 0.6)', // Green for Present
+                        'rgba(220, 53, 69, 0.6)', // Red for Absent
+                        'rgba(255, 193, 7, 0.6)'  // Yellow for Excused
+                    ],
+                    borderColor: [
+                        'rgba(40, 167, 69, 1)',
+                        'rgba(220, 53, 69, 1)',
+                        'rgba(255, 193, 7, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true, // Ensure the Y-axis starts from zero
+                        title: {
+                            display: true,
+                            text: 'Number of Students'
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.raw; // Display the raw value in the tooltip
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Call the function to create the chart when the page loads
+    window.onload = function() {
+        createAttendanceChart();
+    };
+    
+    </script>
+    <script src="/Frontend/School Admin/School Admin/Admin-Dashboard-Modern-master/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</body>
+</html>

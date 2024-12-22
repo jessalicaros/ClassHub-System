@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Favicons -->
+  <link href="/Frontend/assets/img/logo1.png" rel="icon">
+  <link href="/Frontend/assets/img/logo1.png" rel="apple-touch-icon">
+  <title>Create Your School Account</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('/Frontend/forms/img/2-abstract-background-gradient-colorful-design-vector.png'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .welcome-container {
+      max-width: 400px;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.9); 
+      box-shadow: solid 5px 7px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-custom {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .btn-custom:hover {
+      background-color: #05771d;
+    }
+
+    .welcome-container {
+      max-width: 400px;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.9); 
+      border-radius: 8px;
+      box-shadow: 10px 10px 20px rgba(72, 255, 99, 0.5); 
+      margin-top: 20px; 
+      margin-bottom: 20px;  
+      animation: float-animation 3s ease-in-out infinite;
+    }
+
+    .welcome-container h3, .welcome-container p {
+      text-align: center;
+    }
+
+    @keyframes float-animation {
+      0% {
+        transform: translateY(0); 
+      }
+      50% {
+        transform: translateY(-10px); 
+      }
+      100% {
+        transform: translateY(0); 
+      }
+    }
+
+    .form-control {
+      text-align: center; 
+      margin-bottom: 5px;  
+      padding: 10px;  
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1px;  
+    }
+
+    .mb-3 {
+      margin-bottom: 2%; 
+    }
+
+    .btn-custom {
+      margin-top: 5%; 
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px; 
+      max-width: 100px; 
+      width: 100%; 
+    }
+
+    #logoPreview {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="welcome-container">
+    <img src="/Frontend/assets/img/logo1.png" alt="ClassHub Logo" class="logo">
+    <h3>Welcome to ClassHub, create your school account</h3>
+    <p>It is our great pleasure to have you on board!</p>
+    <form id="createAccountForm" class="text-center">
+      <div class="mb-3">
+        <input type="text"  class="form-control" placeholder="Enter the name of admin" required>
+      </div>
+      <div class="mb-3">
+        <input type="text" id="schoolName" class="form-control" placeholder="Enter the name of school" required>
+      </div>
+      <div class="mb-3">
+        <input type="email" class="form-control" placeholder="Enter the school email" required>
+      </div>
+      
+      <!-- Logo Upload Section -->
+      <div class="mb-3">
+        <label for="logoUpload" class="form-label">Upload School Logo</label>
+        <input type="file" class="form-control" id="logoUpload" accept="image/*" onchange="previewLogo(event)" required>
+      </div>
+      
+      <div class="mb-3">
+        <img id="logoPreview" src="" alt="Logo Preview" />
+      </div>
+      <button type="submit" class="btn btn-custom w-100">Save and Continue</button>
+    
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+
+  <script>
+      // Function to preview logo
+      function previewLogo(event) {
+      const logoPreview = document.getElementById('logoPreview');
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        logoPreview.src = e.target.result;
+      };
+      if (file) reader.readAsDataURL(file);
+    }
+
+    // Save logo and school name to localStorage
+document.getElementById('createAccountForm').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const schoolName = document.getElementById('schoolName').value;
+  const logoFile = document.getElementById('logoUpload').files[0];
+
+  // Save the school name to localStorage
+  localStorage.setItem('schoolName', schoolName);
+
+  // Save the logo image as a data URL (base64 encoded)
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    localStorage.setItem('schoolLogo', e.target.result);
+    // After saving, redirect to the dashboard or next page
+    window.location.href = "http://127.0.0.1:5500/Frontend/School%20Admin/School%20Admin/Admin-Dashboard-Modern-master/index.html";
+    
+     // Redirect to dashboard page
+  };
+  if (logoFile) {
+    reader.readAsDataURL(logoFile); // Convert the logo file to base64
+  }
+});
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+[
+    {
+        "id": "101",
+        "name": "Juan Dela Cruz",
+        "address": "Barangay Mabini, Manila",
+        "phone": "0917-123-4567",
+        "email": "juandelacruz@example.com",
+        "qualification": "M.Sc. in Mathematics",
+        "section": "Grade 8",
+        "subject": "Algebra, Geometry"
+    },
+    {
+        "id": "102",
+        "name": "Maria Santos",
+        "address": "Barangay Katipunan, Quezon City",
+        "phone": "0918-234-5678",
+        "email": "mariasantos@example.com",
+        "qualification": "B.A. in English",
+        "section": "Grade 6",
+        "subject": "English Literature"
+    },
+    {
+        "id": "103",
+        "name": "Carlos Gomez",
+        "address": "Barangay Cavite, Cavite",
+        "phone": "0919-345-6789",
+        "email": "carlosgomez@example.com",
+        "qualification": "B.Sc. in Physics",
+        "section": "Grade 7",
+        "subject": "Physics"
+    },
+    {
+        "id": "104",
+        "name": "Ana Perez",
+        "address": "Barangay Batangas, Batangas",
+        "phone": "0920-456-7890",
+        "email": "anaperez@example.com",
+        "qualification": "M.A. in History",
+        "section": "Grade 8",
+        "subject": "World History"
+    },
+    {
+        "id": "105",
+        "name": "Luis Bautista",
+        "address": "Barangay Tandang Sora, Quezon City",
+        "phone": "0921-567-8901",
+        "email": "luisbautista@example.com",
+        "qualification": "B.A. in Chemistry",
+        "section": "Grade 9",
+        "subject": "Chemistry"
+    },
+    {
+        "id": "106",
+        "name": "Rosa Tan",
+        "address": "Barangay Vigan, Ilocos Sur",
+        "phone": "0922-678-9012",
+        "email": "rosatan@example.com",
+        "qualification": "M.Ed. in Special Education",
+        "section": "Grade 10",
+        "subject": "Special Education"
+    },
+    {
+        "id": "107",
+        "name": "Marco Mendoza",
+        "address": "Barangay Alabang, Muntinlupa",
+        "phone": "0923-789-0123",
+        "email": "marcomendoza@example.com",
+        "qualification": "B.Sc. in Biology",
+        "section": "Grade 11",
+        "subject": "Biology"
+    },
+    {
+        "id": "108",
+        "name": "Isabel Cruz",
+        "address": "Barangay Makati, Metro Manila",
+        "phone": "0924-890-1234",
+        "email": "isabelcruz@example.com",
+        "qualification": "M.Sc. in Mathematics",
+        "section": "Grade 12",
+        "subject": "Mathematics"
+    },
+    {
+        "id": "109",
+        "name": "Nina Garcia",
+        "address": "Barangay Quezon City, Manila",
+        "phone": "0925-901-2345",
+        "email": "ninagarcia@example.com",
+        "qualification": "B.A. in Literature",
+        "section": "Grade 7",
+        "subject": "Literature"
+    },
+    {
+        "id": "110",
+        "name": "Eddie Morales",
+        "address": "Barangay San Juan, Manila",
+        "phone": "0926-012-3456",
+        "email": "eddiemorales@example.com",
+        "qualification": "M.A. in Physics",
+        "section": "Grade 9",
+        "subject": "Physics"
+    },
+    {
+        "id": "111",
+        "name": "Liza Ramirez",
+        "address": "Barangay Baguio, Baguio City",
+        "phone": "0927-123-4567",
+        "email": "lizaramirez@example.com",
+        "qualification": "B.A. in Psychology",
+        "section": "Grade 10",
+        "subject": "Guidance"
+    },
+    {
+        "id": "112",
+        "name": "Josefina Morales",
+        "address": "Barangay Taguig, Metro Manila",
+        "phone": "0928-234-5678",
+        "email": "josefina@example.com",
+        "qualification": "B.Sc. in Chemistry",
+        "section": "Grade 11",
+        "subject": "Chemistry"
+    },
+    {
+        "id": "113",
+        "name": "Antonio Lopez",
+        "address": "Barangay Cebu, Cebu City",
+        "phone": "0929-345-6789",
+        "email": "antoniolopez@example.com",
+        "qualification": "M.Sc. in Computer Science",
+        "section": "Grade 9",
+        "subject": "Computer Science"
+    },
+    {
+        "id": "114",
+        "name": "Eva Santiago",
+        "address": "Barangay Palawan, Palawan",
+        "phone": "0930-456-7890",
+        "email": "evasantiago@example.com",
+        "qualification": "M.A. in Education",
+        "section": "Grade 8",
+        "subject": "Science"
+    }
+]

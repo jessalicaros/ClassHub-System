@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicons -->
+  <link href="/Frontend/assets/img/logo1.png" rel="icon">
+  <link href="/Frontend/assets/img/logo1.png" rel="apple-touch-icon">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Sign Up</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("signUpForm").addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const fullName = document.getElementById("signupfullName").value;
+                const dob = document.getElementById("signupdob").value;
+                const email = document.getElementById("signupemail").value.toLowerCase(); // Normalize email
+                const phone = document.getElementById("signupphone").value;
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("signuppassword").value;
+                const confirmPassword = document.getElementById("signupconfirmPassword").value;
+                const role = document.querySelector('input[name="role"]:checked')?.value;
+                const termsAccepted = document.getElementById("signuptermsCheck").checked;
+
+                const messageDiv = document.getElementById("message");
+
+                // Validation checks
+                if (!fullName || !dob || !email || !phone || !username || !password || !confirmPassword || !role || !termsAccepted) {
+                    messageDiv.innerHTML = "<div class='alert alert-warning'>Please fill in all fields and accept the terms.</div>";
+                    return;
+                }
+
+                if (password !== confirmPassword) {
+                    messageDiv.innerHTML = "<div class='alert alert-danger'>Passwords do not match.</div>";
+                    return;
+                }
+
+                // Check if email already exists
+                if (localStorage.getItem(email)) {
+                    messageDiv.innerHTML = "<div class='alert alert-danger'>An account with this email already exists.</div>";
+                    return;
+                }
+
+                // Save user data to localStorage
+                const userData = {
+                    fullName,
+                    dob,
+                    email,
+                    phone,
+                    username,
+                    password,
+                    role
+                };
+
+                localStorage.setItem(email, JSON.stringify(userData));
+
+                messageDiv.innerHTML = "<div class='alert alert-success'>Sign Up Successful! You can now log in.</div>";
+                setTimeout(() => {
+                    window.location.href = "login.html"; // Redirect to login
+                }, 2000);
+            });
+        });
+        
+
+        
+    </script>
+    
+    
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row border rounded-5 p-3 bg-white shadow box-area">
+            <div class="col-md-6 left-box text-center bg-primary text-white">
+                <img src="/Frontend/assets/img/logo1.png" style="width:100px;">
+                <p class="fs-2 fw-bold">Join Us</p>
+                <p>Let's get you set up for your personal account.</p>
+                <img src="/Frontend/assets/img/log1.webp" style="width:400px; height:500px; border-radius: 10px;">
+            </div>
+            <div class="col-md-6 right-box">
+                <h2>Let's Get You Set Up</h2>
+                <p>We're excited to have you join us!</p>
+                <form id="signUpForm">
+                    <input type="text" id="signupfullName" placeholder="Full Name" class="form-control mb-2" required>
+                    <input type="date" id="signupdob" class="form-control mb-2" required>
+                    <input type="email" id="signupemail" placeholder="Email Address" class="form-control mb-2" required>
+                    <input type="tel" id="signupphone" placeholder="Phone Number" class="form-control mb-2" required>
+                    <input type="text" id="username" placeholder="Username" class="form-control mb-2" required>
+                    <input type="password" id="signuppassword" placeholder="Password" class="form-control mb-2" required>
+                    <input type="password" id="signupconfirmPassword" placeholder="Confirm Password" class="form-control mb-2" required>
+    
+                    <!-- User Role Selection -->
+                    <p class="fs-5 mb-2"><strong>Select Your Role</strong></p>
+                    <div class="form-check">
+                        <input type="radio" id="signuproleTeacher" name="role" value="Teacher" class="form-check-input" required>
+                        <label for="roleTeacher" class="form-check-label">Teacher</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="signuproleAdmin" name="role" value="School Admin" class="form-check-input" required>
+                        <label for="roleAdmin" class="form-check-label">School Admin</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" id="signuproleSuperAdmin" name="role" value="Super Admin" class="form-check-input" required>
+                        <label for="roleSuperAdmin" class="form-check-label">Super Admin</label>
+                    </div>
+    
+                    <div class="form-check mb-2">
+                        <input type="checkbox" id="signuptermsCheck" class="form-check-input" required>
+                        <label for="termsCheck">I agree to the <a href="#">Terms and Privacy Policies</a></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 mb-2">Sign Up</button>
+                    <div id="message"></div>
+                    <small>Already have an account? <a href="login.html">Login</a></small>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

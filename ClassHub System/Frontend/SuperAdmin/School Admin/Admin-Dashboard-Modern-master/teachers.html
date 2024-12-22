@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Super Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="/Frontend/assets/img/logo1.png" rel="icon">
+    <link href="/Frontend/assets/img/logo1.png" rel="apple-touch-icon">
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+
+<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+
+
+<body>
+    <input type="checkbox" id="menu-toggle">
+    <div class="sidebar">
+        <div class="side-header">
+          
+          </div>
+        <div class="side-content">
+            <div class="profile">
+              
+              <div class="profile-img bg-img" style="background-image: url(/Frontend/assets/img/logo1.png);"></div>
+         </div>
+         
+             <div class="side-menu">
+                <ul>
+                    <li>
+                       <a href="index.html">
+                            <span class="las la-home"></span>
+                            <small>Dashboard</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="school.html">
+                             <span class="las la-user-alt"></span>
+                             <small>School</small>
+                         </a>
+                     </li>
+                     <li>
+                         <a href="teachers.html"  class="active">
+                             <span class="las la-user-alt"></span>
+                             <small>Teachers</small>
+                         </a>
+                     </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars" style="font-size: 25px; position: relative; top: 5px;"></span>
+                </label>
+                
+                <div class="header-menu">
+                   
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Message Icon (Font Awesome) -->
+                        <span class="las la-envelope" style="font-size: 24px; color:black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: green; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">7</span> 
+                    
+                        <!-- Message Dropdown -->
+                        <div class="message-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="message-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <img src="/Frontend/assets/img/m.png" alt="Message Icon" style="width: 16px; height: 16px;"/>
+                                <h3 style="font-size: 16px; font-weight: bold;">MESSAGES</h3>
+                                <span class="message-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="messages-list" style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Reminder: Submit the grades for your Algebra class by Friday, 3 PM.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Student: John Doe</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Can you please clarify the instructions for the final project? I'm a bit confused.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Math Department</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">The next department meeting is scheduled for Tuesday at 2 PM. Please be prepared to discuss the new curriculum changes.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Your request for additional teaching resources has been approved. Please visit the resource center to pick them up.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">System maintenance scheduled for 2 AM tonight. Please save your work before then.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Parent: Anna</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">My child has been struggling with homework. Would it be possible to arrange additional support or tutoring?</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">You have an upcoming professional development workshop this Friday. Please confirm your attendance.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Notification Icon (Font Awesome) -->
+                        <span class="las la-bell" style="font-size: 24px; color: black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">3</span> 
+                    
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="notification-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span class="notification-app-icon" style="font-size: 18px; color: #FFA500;">🔔</span> <!-- Notification Bell Icon -->
+                                <h3 style="font-size: 16px; font-weight: bold;">NOTIFICATIONS</h3>
+                                <span class="notification-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="notifications-list" style="list-style: none; padding: 0; margin: 0;">
+                                <!-- Example Notification 1: System Update -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        System update available. Please update your application to the latest version for improved performance.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 2: New Task Assigned -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        New task assigned by Admin: Prepare class report for this month. Deadline: Friday, 5 PM.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 3: Meeting Scheduled -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        Meeting scheduled for 3 PM today regarding new school policies. Please attend.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+
+
+                    <div class="user" style="position: relative; display: flex; align-items: center; padding-right: 50px;">
+                        <!-- Display Username -->
+                        <div 
+                            style="display: flex; align-items: center; font-size: 13px; cursor: pointer;" 
+                            onclick="toggleDropdown()"
+                        >
+                            <img 
+                                id="userIcon" 
+                                src="/Frontend/assets/img/user (1).png" 
+                                alt="User Icon" 
+                                style="border-radius: 20%; width: 20px; height: 20px; margin-right: 5px;"
+                            />
+                            <span id="usernameDisplay" style="font-weight: bold;">Username</span>
+                            <span 
+                                id="dropdownIcon" 
+                                style="margin-left: 5px; font-size: 14px;"
+                            >
+                                ▼
+                            </span>
+                        </div>
+                        
+                        <!-- Dropdown Menu -->
+                        <div 
+                            id="logoutDropdown" 
+                            style="
+                                display: none; 
+                                position: absolute; 
+                                top: 30px; 
+                                right: 0; 
+                                background-color: white; 
+                                border: 1px solid #ccc; 
+                                border-radius: 5px; 
+                                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+                                padding: 10px; 
+                                z-index: 1000;
+                                min-width: 120px;
+                                text-align: center;
+                            "
+                        >
+                            <span 
+                                onclick="logout()" 
+                                style="cursor: pointer; color: red; font-weight: bold; display: block;"
+                            >
+                                Logout
+                            </span>
+              </div>
+                </div>
+            </div>
+        </header>
+        <main>
+            
+            <div class="page-header">
+                <h1>Teachers</h1>
+                <small>Home / Teachers</small>
+            </div>
+            
+            <div class="page-content">
+            
+               
+
+                   
+                </div>
+
+
+                <div class="records table-responsive">
+
+                    <div class="record-header">
+                      
+                     
+   
+
+                    </div>
+
+                    <div >
+                        <table  width="100%" style="font-size: 0.85rem;">
+                            <thead>
+                                
+                                <tr>
+                                    <th style="font-size: 0.80rem;">Teacher Id</th>
+                                    <th style="font-size: 0.80rem;"> NAME</th>
+                                    <th style="font-size: 0.80rem;"> ADDRESS</th>
+                                    <th style="font-size: 0.80rem;">TELL NO.</th>
+                                    <th style="font-size: 0.80rem;"> EMAIL</th>
+                                    <th style="font-size: 0.80rem;">QUALIFICATION</th>
+                                    <th style="font-size: 0.80rem;"> SECTION HANDLED</th>
+                                    <th style="font-size: 0.80rem;">SUBJECT HANDLED</th>
+                                    <th style="font-size: 0.80rem;"> ACTIONS</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody id="teacherList">
+                               
+                            </tbody>
+                        </table>
+                     </div>
+                    
+                    
+
+                    
+                     <div class="modal" id="viewTeacherModal" style="display: none;">
+                        <div class="modal-content">
+                            <span class="close" onclick="closeViewTeacherModal()">&times;</span>
+                            <h2>View Teacher Details</h2>
+                            <div class="form-group">
+                                <label>Teacher ID:</label>
+                                <input type="text" id="viewTeacherId" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Teacher Name:</label>
+                                <input type="text" id="viewTeacherName" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Address:</label>
+                                <textarea id="viewTeacherAddress" rows="3" readonly></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Phone:</label>
+                                <input type="text" id="viewTeacherPhone" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Email:</label>
+                                <input type="text" id="viewTeacherEmail" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Qualification:</label>
+                                <input type="text" id="viewTeacherQualification" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Section Handled:</label>
+                                <input type="text" id="viewTeacherSection" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label>Subject Handled:</label>
+                                <input type="text" id="viewTeacherSubject" readonly>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    
+<!-- Modal for Editing Teacher Details -->
+<div class="modal" id="editTeacherModal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditTeacherModal()">&times;</span>
+        <h2>Edit Teacher Details</h2>
+        <form id="editTeacherForm">
+            <div class="form-group">
+                <label for="editTeacherId">Teacher ID:</label>
+                <input type="text" id="editTeacherId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="editTeacherName">Teacher Name:</label>
+                <input type="text" id="editTeacherName" required>
+            </div>
+            <div class="form-group">
+                <label for="editTeacherAddress">Address:</label>
+                <textarea id="editTeacherAddress" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="editTeacherPhone">Phone:</label>
+                <input type="text" id="editTeacherPhone" required>
+            </div>
+            <div class="form-group">
+                <label for="editTeacherEmail">Email:</label>
+                <input type="email" id="editTeacherEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="editTeacherQualification">Qualification:</label>
+                <input type="text" id="editTeacherQualification" required>
+            </div>
+            <div class="form-group">
+                <label for="editTeacherSection">Section Handled:</label>
+                <input type="text" id="editTeacherSection" required>
+            </div>
+            <div class="form-group">
+                <label for="editTeacherSubject">Subject Handled:</label>
+                <input type="text" id="editTeacherSubject" required>
+            </div>
+            <button type="button" class="btn" onclick="saveTeacherDetails()">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="closeEditTeacherModal()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+
+
+                    
+                </div>
+
+            </div>
+            
+        </main>
+        
+    </div>
+    <script>
+        // Retrieve the logo and school name from localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            const logo = localStorage.getItem('schoolLogo'); // Retrieve the logo (base64 encoded)
+            const schoolName = localStorage.getItem('schoolName'); // Retrieve the school name
+        
+            // Display the logo if available
+            const profileLogo = document.getElementById('profileLogo');
+            if (logo) {
+                profileLogo.style.backgroundImage = `url(${logo})`; // Set the background image
+            }
+        
+            // Display the school name if available
+            const schoolNameElement = document.getElementById('schoolNameDisplay');
+            if (schoolName) {
+                schoolNameElement.textContent = schoolName; // Set the text content to the saved school name
+            }
+        });
+
+     //Profile
+document.addEventListener("DOMContentLoaded", () => {
+    // Check if user is logged in (email exists in localStorage)
+    const email = localStorage.getItem("currentUserEmail");
+    if (email) {
+        const userData = JSON.parse(localStorage.getItem(email));
+        if (userData && userData.username) {
+            // Display the username in the designated span
+            document.getElementById("usernameDisplay").textContent = `Welcome, ${userData.username}!`;
+        }
+    } else {
+        // Redirect to login page if no email is stored (user not logged in)
+        window.location.href = "login.html";
+    }
+});
+
+function toggleDropdown() {
+        const dropdown = document.getElementById('logoutDropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        const dropdown = document.getElementById('logoutDropdown');
+        const userSection = document.querySelector('.user');
+        if (dropdown.style.display === 'block' && !userSection.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    function logout() {
+        alert('Logging out...');
+        // Add your logout logic here
+    }
+    //messages
+    // Toggle message dropdown visibility
+    document.querySelector('.las.la-envelope').addEventListener('click', function() {
+        const dropdown = document.querySelector('.message-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    //Notification
+    document.addEventListener("DOMContentLoaded", function() {
+       
+        const notifyIcon = document.querySelector('.las.la-bell');
+        const dropdown = document.querySelector('.notification-dropdown');
+
+        
+        notifyIcon.addEventListener('click', function() {
+            
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+       
+        window.addEventListener('click', function(event) {
+            if (!notifyIcon.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    });
+    // Fetch data from JSON
+fetch('Teacher.json')
+    .then(response => response.json())
+    .then(data => {
+        const teacherList = document.getElementById('teacherList');
+        teacherList.innerHTML = ""; // Clear existing rows
+        data.forEach(teacher => {
+            const row = `
+                    <tr id="teacher-${teacher.id}">
+                        <td>${teacher.id}</td>
+                        <td>${teacher.name}</td>
+                        <td>${teacher.address}</td>
+                        <td>${teacher.phone}</td>
+                        <td>${teacher.email}</td>
+                        <td>${teacher.qualification}</td>
+                        <td>${teacher.section}</td>
+                        <td>${teacher.subject}</td>
+                        <td>
+                            <div class="actions">
+                                <span class="las la-eye" title="View" onclick="viewTeacher(${teacher.id})"></span>
+                               <span class="las la-trash" title="Delete" onclick="deleteTeacher(${teacher.id})"></span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                teacherList.innerHTML += row;
+            });
+        })
+        .catch(error => console.error('Error fetching teacher data:', error));
+
+
+
+// Sample data representing teacher information
+const teacherData = [
+    {
+        "id": "101",
+        "name": "Juan Dela Cruz",
+        "address": "Barangay Mabini, Manila",
+        "phone": "0917-123-4567",
+        "email": "juandelacruz@example.com",
+        "qualification": "M.Sc. in Mathematics",
+        "section": "Grade 8",
+        "subject": "Algebra, Geometry"
+    },
+    {
+        "id": "102",
+        "name": "Maria Santos",
+        "address": "Barangay Katipunan, Quezon City",
+        "phone": "0918-234-5678",
+        "email": "mariasantos@example.com",
+        "qualification": "B.A. in English",
+        "section": "Grade 6",
+        "subject": "English Literature"
+    },
+    {
+        "id": "103",
+        "name": "Carlos Gomez",
+        "address": "Barangay Cavite, Cavite",
+        "phone": "0919-345-6789",
+        "email": "carlosgomez@example.com",
+        "qualification": "B.Sc. in Physics",
+        "section": "Grade 7",
+        "subject": "Physics"
+    },
+    {
+        "id": "104",
+        "name": "Ana Perez",
+        "address": "Barangay Batangas, Batangas",
+        "phone": "0920-456-7890",
+        "email": "anaperez@example.com",
+        "qualification": "M.A. in History",
+        "section": "Grade 8",
+        "subject": "World History"
+    },
+    {
+        "id": "105",
+        "name": "Luis Bautista",
+        "address": "Barangay Tandang Sora, Quezon City",
+        "phone": "0921-567-8901",
+        "email": "luisbautista@example.com",
+        "qualification": "B.A. in Chemistry",
+        "section": "Grade 9",
+        "subject": "Chemistry"
+    },
+    {
+        "id": "106",
+        "name": "Rosa Tan",
+        "address": "Barangay Vigan, Ilocos Sur",
+        "phone": "0922-678-9012",
+        "email": "rosatan@example.com",
+        "qualification": "M.Ed. in Special Education",
+        "section": "Grade 10",
+        "subject": "Special Education"
+    },
+    {
+        "id": "107",
+        "name": "Marco Mendoza",
+        "address": "Barangay Alabang, Muntinlupa",
+        "phone": "0923-789-0123",
+        "email": "marcomendoza@example.com",
+        "qualification": "B.Sc. in Biology",
+        "section": "Grade 11",
+        "subject": "Biology"
+    },
+    {
+        "id": "108",
+        "name": "Isabel Cruz",
+        "address": "Barangay Makati, Metro Manila",
+        "phone": "0924-890-1234",
+        "email": "isabelcruz@example.com",
+        "qualification": "M.Sc. in Mathematics",
+        "section": "Grade 12",
+        "subject": "Mathematics"
+    },
+    {
+        "id": "109",
+        "name": "Nina Garcia",
+        "address": "Barangay Quezon City, Manila",
+        "phone": "0925-901-2345",
+        "email": "ninagarcia@example.com",
+        "qualification": "B.A. in Literature",
+        "section": "Grade 7",
+        "subject": "Literature"
+    },
+    {
+        "id": "110",
+        "name": "Eddie Morales",
+        "address": "Barangay San Juan, Manila",
+        "phone": "0926-012-3456",
+        "email": "eddiemorales@example.com",
+        "qualification": "M.A. in Physics",
+        "section": "Grade 9",
+        "subject": "Physics"
+    },
+    {
+        "id": "111",
+        "name": "Liza Ramirez",
+        "address": "Barangay Baguio, Baguio City",
+        "phone": "0927-123-4567",
+        "email": "lizaramirez@example.com",
+        "qualification": "B.A. in Psychology",
+        "section": "Grade 10",
+        "subject": "Guidance"
+    },
+    {
+        "id": "112",
+        "name": "Josefina Morales",
+        "address": "Barangay Taguig, Metro Manila",
+        "phone": "0928-234-5678",
+        "email": "josefina@example.com",
+        "qualification": "B.Sc. in Chemistry",
+        "section": "Grade 11",
+        "subject": "Chemistry"
+    },
+    {
+        "id": "113",
+        "name": "Antonio Lopez",
+        "address": "Barangay Cebu, Cebu City",
+        "phone": "0929-345-6789",
+        "email": "antoniolopez@example.com",
+        "qualification": "M.Sc. in Computer Science",
+        "section": "Grade 9",
+        "subject": "Computer Science"
+    },
+    {
+        "id": "114",
+        "name": "Eva Santiago",
+        "address": "Barangay Palawan, Palawan",
+        "phone": "0930-456-7890",
+        "email": "evasantiago@example.com",
+        "qualification": "M.A. in Education",
+        "section": "Grade 8",
+        "subject": "Science"
+    }
+];
+
+function viewTeacher(id) {
+    console.log("Searching for teacher with id:", id); // Debugging line
+    // Convert both teacher.id and id to string before comparison
+    const teacher = teacherData.find((teacher) => String(teacher.id) === String(id));
+
+    if (teacher) {
+        // Populate the modal with teacher's data
+        document.getElementById("viewTeacherId").value = teacher.id;
+        document.getElementById("viewTeacherName").value = teacher.name;
+        document.getElementById("viewTeacherAddress").value = teacher.address;
+        document.getElementById("viewTeacherPhone").value = teacher.phone;
+        document.getElementById("viewTeacherEmail").value = teacher.email;
+        document.getElementById("viewTeacherQualification").value = teacher.qualification;
+        document.getElementById("viewTeacherSection").value = teacher.section;
+        document.getElementById("viewTeacherSubject").value = teacher.subject;
+
+        document.getElementById("viewTeacherModal").style.display = "block";
+    } else {
+        console.error("Teacher not found!");
+    }
+}
+function renderTeacherTable() {
+  
+  
+   
+}
+
+// Function to close the modal
+function closeViewTeacherModal() {
+    // Set the modal's display style to 'none' to hide it
+    document.getElementById("viewTeacherModal").style.display = "none";
+}
+
+
+
+function deleteTeacher(id) {
+    const teacherId = String(id);  // Ensure id is a string to match the format in teacherData
+
+    // Find the index of the teacher to delete
+    const index = teacherData.findIndex(teacher => teacher.id === teacherId);
+
+    // Check if the teacher exists
+    if (index !== -1) {
+        // Remove the teacher from the array
+        teacherData.splice(index, 1);
+
+        // Re-render the table to reflect the changes
+        renderTeacherTable();
+
+        console.log(`Teacher with ID ${teacherId} deleted successfully.`);
+    } else {
+        console.error("Teacher not found!");
+    }
+}
+function renderTeacherTable() {
+    const teacherList = document.getElementById("teacherList");
+    teacherList.innerHTML = ""; // Clear the existing table
+
+    // Loop through the teacherData array to create new rows
+    teacherData.forEach(teacher => {
+        const row = document.createElement("tr");
+        row.id = `teacher-${teacher.id}`;  // Set the row ID to match the teacher ID
+        row.innerHTML = `
+            <td>${teacher.id}</td>
+            <td>${teacher.name}</td>
+            <td>${teacher.address}</td>
+            <td>${teacher.phone}</td>
+            <td>${teacher.email}</td>
+            <td>${teacher.qualification}</td>
+            <td>${teacher.section}</td>
+            <td>${teacher.subject}</td>
+            <td>
+                <div class="actions">
+                    <span class="las la-eye" title="View" onclick="viewTeacher('${teacher.id}')"></span>
+                    <span class="las la-trash" title="Delete" onclick="deleteTeacher('${teacher.id}')"></span>
+                </div>
+            </td>
+        `;
+        teacherList.appendChild(row);
+    });
+}
+
+
+
+</script>
+ 
+</body>
+</html>

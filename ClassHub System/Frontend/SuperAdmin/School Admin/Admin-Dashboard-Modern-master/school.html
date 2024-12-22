@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Super Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="/Frontend/assets/img/logo1.png" rel="icon">
+    <link href="/Frontend/assets/img/logo1.png" rel="apple-touch-icon">
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+
+<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+
+
+<body>
+    <input type="checkbox" id="menu-toggle">
+    <div class="sidebar">
+        <div class="side-header">
+          
+          </div>
+        <div class="side-content">
+            <div class="profile">
+              
+              <div class="profile-img bg-img" style="background-image: url(/Frontend/assets/img/logo1.png);"></div>
+         </div>
+         
+             <div class="side-menu">
+                <ul>
+                    <li>
+                       <a href="index.html">
+                            <span class="las la-home"></span>
+                            <small>Dashboard</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="school.html"  class="active">
+                             <span class="las la-user-alt"></span>
+                             <small>School</small>
+                         </a>
+                     </li>
+                     <li>
+                         <a href="teachers.html" >
+                             <span class="las la-user-alt"></span>
+                             <small>Teachers</small>
+                         </a>
+                     </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars" style="font-size: 25px; position: relative; top: 5px;"></span>
+                </label>
+                
+                <div class="header-menu">
+                   
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Message Icon (Font Awesome) -->
+                        <span class="las la-envelope" style="font-size: 24px; color:black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: green; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">7</span> 
+                    
+                        <!-- Message Dropdown -->
+                        <div class="message-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="message-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <img src="/Frontend/assets/img/m.png" alt="Message Icon" style="width: 16px; height: 16px;"/>
+                                <h3 style="font-size: 16px; font-weight: bold;">MESSAGES</h3>
+                                <span class="message-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="messages-list" style="list-style: none; padding: 0; margin: 0;">
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Reminder: Submit the grades for your Algebra class by Friday, 3 PM.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Student: John Doe</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Can you please clarify the instructions for the final project? I'm a bit confused.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Math Department</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">The next department meeting is scheduled for Tuesday at 2 PM. Please be prepared to discuss the new curriculum changes.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">Your request for additional teaching resources has been approved. Please visit the resource center to pick them up.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">System maintenance scheduled for 2 AM tonight. Please save your work before then.</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Parent: Anna</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">My child has been struggling with homework. Would it be possible to arrange additional support or tutoring?</p>
+                                </li>
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <strong class="sender-name" style="font-size: 14px; font-weight: bold;">Admin</strong>
+                                    <p class="message-content" style="font-size: 12px; color: #555;">You have an upcoming professional development workshop this Friday. Please confirm your attendance.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="notify-icon" style="position: relative;">
+                        <!-- Notification Icon (Font Awesome) -->
+                        <span class="las la-bell" style="font-size: 24px; color: black;"></span> 
+                        <span class="notify" style="position: absolute; top: -5px; right: -5px; background-color: red; color: white; border-radius: 50%; padding: 2px 6px; font-size: 12px;">3</span> 
+                    
+                        <!-- Notification Dropdown -->
+                        <div class="notification-dropdown" style="display: none; position: absolute; top: 30px; right: 0; background-color: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; min-width: 200px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); z-index: 1000;">
+                            <div class="notification-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span class="notification-app-icon" style="font-size: 18px; color: #FFA500;">🔔</span> <!-- Notification Bell Icon -->
+                                <h3 style="font-size: 16px; font-weight: bold;">NOTIFICATIONS</h3>
+                                <span class="notification-time" style="font-size: 12px; color: #999;">now</span>
+                            </div>
+                            <ul class="notifications-list" style="list-style: none; padding: 0; margin: 0;">
+                                <!-- Example Notification 1: System Update -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        System update available. Please update your application to the latest version for improved performance.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 2: New Task Assigned -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        New task assigned by Admin: Prepare class report for this month. Deadline: Friday, 5 PM.
+                                    </p>
+                                </li>
+                                <!-- Example Notification 3: Meeting Scheduled -->
+                                <li style="padding: 10px; border-bottom: 1px solid #ccc;">
+                                    <p class="notification-content" style="font-size: 12px; color: #555;">
+                                        Meeting scheduled for 3 PM today regarding new school policies. Please attend.
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    
+
+
+                    <div class="user" style="position: relative; display: flex; align-items: center; padding-right: 50px;">
+                        <!-- Display Username -->
+                        <div 
+                            style="display: flex; align-items: center; font-size: 13px; cursor: pointer;" 
+                            onclick="toggleDropdown()"
+                        >
+                            <img 
+                                id="userIcon" 
+                                src="/Frontend/assets/img/user (1).png" 
+                                alt="User Icon" 
+                                style="border-radius: 20%; width: 20px; height: 20px; margin-right: 5px;"
+                            />
+                            <span id="usernameDisplay" style="font-weight: bold;">Username</span>
+                            <span 
+                                id="dropdownIcon" 
+                                style="margin-left: 5px; font-size: 14px;"
+                            >
+                                ▼
+                            </span>
+                        </div>
+                        
+                        <!-- Dropdown Menu -->
+                        <div 
+                            id="logoutDropdown" 
+                            style="
+                                display: none; 
+                                position: absolute; 
+                                top: 30px; 
+                                right: 0; 
+                                background-color: white; 
+                                border: 1px solid #ccc; 
+                                border-radius: 5px; 
+                                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+                                padding: 10px; 
+                                z-index: 1000;
+                                min-width: 120px;
+                                text-align: center;
+                            "
+                        >
+                            <span 
+                                onclick="logout()" 
+                                style="cursor: pointer; color: red; font-weight: bold; display: block;"
+                            >
+                                Logout
+                            </span>
+              </div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            
+            <div class="page-header">
+                <h1>School</h1>
+                <small>Home / school</small>
+            </div>
+            
+            <div class="page-content">
+            
+                <!-- Left Column: Attendance Cards -->
+                <div class="col-md-8">
+                    <div class="row analytics">
+                        <!-- Present Card -->
+                          
+                        
+                        
+                        
+              </div>
+                    <div class="col-8 offset-2 my-5">
+                        <div class="card">
+                           
+                        </div>
+                        </div>
+               
+                  
+                  
+                </div>
+            </div>
+            
+           
+
+                <div class="records table-responsive">
+
+                    <div class="record-header">
+                      
+
+                      
+                        <div class="add-school">
+                            <button class="btn add-school-btn" onclick="openAddSchoolModal()">Add School</button>
+                    </div>
+                 </div>       
+
+
+<!-- Modal to Add School -->
+<div class="modal" id="addSchoolModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeAddSchoolModal()">&times;</span>
+        <h2>Add School</h2>
+        <form id="addSchoolForm" onsubmit="saveSchool(event)">
+            <div class="form-group">
+                <label for="schoolId">School ID:</label>
+                <input type="number" id="schoolId" name="schoolId" required placeholder="Enter unique ID">
+            </div>
+
+            <div class="form-group">
+                <label for="schoolName">School Name:</label>
+                <input type="text" id="schoolName" name="schoolName" required placeholder="Enter school name">
+            </div>
+
+            <div class="form-group">
+                <label for="schoolAddress">Address:</label>
+                <textarea id="schoolAddress" name="schoolAddress" rows="3" required placeholder="Enter school address"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="schoolLogo">Upload Logo:</label>
+                <input type="file" id="schoolLogo" name="schoolLogo" accept="image/*">
+            </div>
+
+            <div class="container">
+                <button type="submit" class="btn">Add School</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+                        
+                        
+                    </div>
+
+                    <div>
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <th>School Id</th>
+                                    <th><span class="las la-sort"></span> SCHOOL NAME</th>
+                                    <th><span class="las la-sort"></span> ADDRESS</th>
+                                   
+                                    <th><span class="las la-sort"></span> ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="schoolList">
+                                <tr id="school-101">
+                                    <td>101</td>
+                                    <td>
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(./img/logo/1.png)"></div>
+                                            <div class="client-info">
+                                                <h4>Calibunan Elementary School</h4>
+                                    
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Brgy.Calibunan,Cabadbaran City
+                                    </td>
+                                   
+                                    <td>
+                                        <div class="actions">
+                                            <span class="las la-eye" title="View" onclick="viewSchool(101)"></span>
+                                            <span class="las la-edit" title="Edit" onclick="editSchool(101)"></span>
+                                            <span class="las la-trash" title="Delete" onclick="deleteSchool(101)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="school-102">
+                                    <td>102</td>
+                                    <td>
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(./img/logo/2.png)"></div>
+                                            <div class="client-info">
+                                                <h4>Tolosa Elementary School</h4>
+                                             
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                       Brgy Tolosa, Cabadbaran City
+                                    </td>
+                                    
+                                    <td>
+                                        <div class="actions">
+                                            <span class="las la-eye" title="View" onclick="viewSchool(102)"></span>
+                                            <span class="las la-edit" title="Edit" onclick="editSchool(102)"></span>
+                                            <span class="las la-trash" title="Delete" onclick="deleteSchool(102)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="school-103">
+                                    <td>103</td>
+                                    <td>
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(./img/logo/3.png)"></div>
+                                            <div class="client-info">
+                                                <h4>Mabini ELementary School</h4>
+                                              
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                       Brgy.Mabini, Cabadbaran City
+                                    </td>
+                                   
+                            
+                                    <td>
+                                        <div class="actions">
+                                            <span class="las la-eye" title="View" onclick="viewSchool(103)"></span>
+                                            <span class="las la-edit" title="Edit" onclick="editSchool(103)"></span>
+                                            <span class="las la-trash" title="Delete" onclick="deleteSchool(103)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="school-104">
+                                    <td>104</td>
+                                    <td>
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(./img/logo/4.png)"></div>
+                                            <div class="client-info">
+                                                <h4>Magallanes Central Elementary School</h4>
+                                              
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Municipality of Magallanes
+                                    </td>
+                                  
+                                    <td>
+                                        <div class="actions">
+                                            <span class="las la-eye" title="View" onclick="viewSchool(104)"></span>
+                                            <span class="las la-edit" title="Edit" onclick="editSchool(104)"></span>
+                                            <span class="las la-trash" title="Delete" onclick="deleteSchool(104)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="school-105">
+                                    <td>105</td>
+                                    <td>
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(./img/logo/5.png)"></div>
+                                            <div class="client-info">
+                                                <h4>La Union Elementary School</h4>
+                                               
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                       Cabadbaran City 
+                                    </td>
+                                 
+                                    <td>
+                                        <div class="actions">
+                                            <span class="las la-eye" title="View" onclick="viewSchool(105)"></span>
+                                            <span class="las la-edit" title="Edit" onclick="editSchool(105)"></span>
+                                            <span class="las la-trash" title="Delete" onclick="deleteSchool(105)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="school-106">
+                                    <td>106</td>
+                                    <td>
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(./img/logo/6.png)"></div>
+                                            <div class="client-info">
+                                                <h4>Dahican Elementary School</h4>
+                                              
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Municipality of Magallanes
+                                    </td>
+                                   
+                                    <td>
+                                        <div class="actions">
+                                            <span class="las la-eye" title="View" onclick="viewSchool(106)"></span>
+                                            <span class="las la-edit" title="Edit" onclick="editSchool(106)"></span>
+                                            <span class="las la-trash" title="Delete" onclick="deleteSchool(106)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="school-107">
+                                    <td>107</td>
+                                    <td>
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(./img/logo/7.png)"></div>
+                                            <div class="client-info">
+                                                <h4>Caloc-an Elementary School</h4>
+                                                
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                      Municipality of Magallanes
+                                    </td>
+                                   
+                                    <td>
+                                        <div class="actions">
+                                            <span class="las la-eye" title="View" onclick="viewSchool(107)"></span>
+                                            <span class="las la-edit" title="Edit" onclick="editSchool(107)"></span>
+                                            <span class="las la-trash" title="Delete" onclick="deleteSchool(107)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="school-108">
+                                    <td>108</td>
+                                    <td>
+                                        <div class="client">
+                                           <div class="client-img bg-img" style="background-image: url(./img/logo/8.png)"></div>
+                                            <div class="client-info">
+                                                <h4>Buhang Elementary School</h4>
+                                               
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        Municipality of Magallanes
+                                    </td>
+                                  
+                                    <td>
+                                        <div class="actions">
+                                            <span class="las la-eye" title="View" onclick="viewSchool(108)"></span>
+                                            <span class="las la-edit" title="Edit" onclick="editSchool(108)"></span>
+                                            <span class="las la-trash" title="Delete" onclick="deleteSchool(108)"></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Modal for Viewing School Details -->
+<div class="modal" id="viewSchoolModal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeViewSchoolModal()">&times;</span>
+        <h2>View School Details</h2>
+        <div class="form-group">
+            <label>School ID:</label>
+            <input type="text" id="viewSchoolId" readonly>
+        </div>
+        <div class="form-group">
+            <label>School Name:</label>
+            <input type="text" id="viewSchoolName" readonly>
+        </div>
+        <div class="form-group">
+            <label>Address:</label>
+            <textarea id="viewSchoolAddress" rows="3" readonly></textarea>
+        </div>
+        <button class="btn" onclick="closeViewSchoolModal()">Close</button>
+    </div>
+</div>
+
+
+
+                </div>
+                <!-- Modal for Editing School Details -->
+<div class="modal" id="editSchoolModal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditSchoolModal()">&times;</span>
+        <h2>Edit School Details</h2>
+        <form id="editSchoolForm">
+            <div class="form-group">
+                <label for="editSchoolId">School ID:</label>
+                <input type="text" id="editSchoolId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="editSchoolName">School Name:</label>
+                <input type="text" id="editSchoolName" required>
+            </div>
+            <div class="form-group">
+                <label for="editSchoolAddress">Address:</label>
+                <textarea id="editSchoolAddress" rows="3" required></textarea>
+            </div>
+            <button type="button" class="btn" onclick="saveSchoolDetails()">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="closeEditSchoolModal()">Cancel</button>
+        </form>
+    </div>
+</div>
+
+
+            
+            </div>
+            
+        </main>
+        
+    </div>
+    <script>
+        // Retrieve the logo and school name from localStorage
+        document.addEventListener("DOMContentLoaded", function() {
+            const logo = localStorage.getItem('schoolLogo'); // Retrieve the logo (base64 encoded)
+            const schoolName = localStorage.getItem('schoolName'); // Retrieve the school name
+        
+            // Display the logo if available
+            const profileLogo = document.getElementById('profileLogo');
+            if (logo) {
+                profileLogo.style.backgroundImage = `url(${logo})`; // Set the background image
+            }
+        
+            // Display the school name if available
+            const schoolNameElement = document.getElementById('schoolNameDisplay');
+            if (schoolName) {
+                schoolNameElement.textContent = schoolName; // Set the text content to the saved school name
+            }
+        });
+
+        //Profile
+document.addEventListener("DOMContentLoaded", () => {
+    // Check if user is logged in (email exists in localStorage)
+    const email = localStorage.getItem("currentUserEmail");
+    if (email) {
+        const userData = JSON.parse(localStorage.getItem(email));
+        if (userData && userData.username) {
+            // Display the username in the designated span
+            document.getElementById("usernameDisplay").textContent = `Welcome, ${userData.username}!`;
+        }
+    } else {
+        // Redirect to login page if no email is stored (user not logged in)
+        window.location.href = "login.html";
+    }
+});
+
+function toggleDropdown() {
+        const dropdown = document.getElementById('logoutDropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', (event) => {
+        const dropdown = document.getElementById('logoutDropdown');
+        const userSection = document.querySelector('.user');
+        if (dropdown.style.display === 'block' && !userSection.contains(event.target)) {
+            dropdown.style.display = 'none';
+        }
+    });
+
+    function logout() {
+        alert('Logging out...');
+        // Add your logout logic here
+    }
+    //messages
+    // Toggle message dropdown visibility
+    document.querySelector('.las.la-envelope').addEventListener('click', function() {
+        const dropdown = document.querySelector('.message-dropdown');
+        dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    });
+
+    //Notification
+    document.addEventListener("DOMContentLoaded", function() {
+       
+        const notifyIcon = document.querySelector('.las.la-bell');
+        const dropdown = document.querySelector('.notification-dropdown');
+
+        
+        notifyIcon.addEventListener('click', function() {
+            
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        });
+
+       
+        window.addEventListener('click', function(event) {
+            if (!notifyIcon.contains(event.target) && !dropdown.contains(event.target)) {
+                dropdown.style.display = 'none';
+            }
+        });
+    });
+    </script>
+    <script src="/Frontend/School Admin/School Admin/Admin-Dashboard-Modern-master/js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+</body>
+</html>
